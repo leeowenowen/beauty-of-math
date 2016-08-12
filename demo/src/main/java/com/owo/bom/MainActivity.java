@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import owo.bom.CloverView;
 import owo.bom.HeartView;
+import owo.bom.InvoluteView;
 import owo.bom.SpiralView;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SpiralView view = new SpiralView(this);
+        InvoluteView view = new InvoluteView(this);
         view.setBackgroundColor(Color.GREEN);
         setContentView(view);
     }
