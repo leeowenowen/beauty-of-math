@@ -54,5 +54,7 @@ demenstrate the beauty of math.
 
 
 
-
-#分形
+#其他
+- 分形
+- 毕达哥拉斯树
+- 皮亚诺曲线
