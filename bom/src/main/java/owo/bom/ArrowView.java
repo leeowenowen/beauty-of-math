@@ -1,4 +1,4 @@
-package owo.bom.axis;
+package owo.bom;
 
 import android.content.Context;
 import android.graphics.Bitmap;
