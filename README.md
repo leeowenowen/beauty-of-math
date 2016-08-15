@@ -70,6 +70,7 @@ demenstrate the beauty of math.
 ###浪漫心形
 ##螺旋形
 ###渐开螺旋
+##贝塞尔曲线
 
 
 
