@@ -34,10 +34,16 @@ public class VerticalView extends View {
         double y0 = 0;
         double x1 = 100;
         double y1 = 100;
+        double h = 50;
         double t = (y0 - y1) / (x0 - x1);
         double k = -1 / t;
-        
+        double xv = 50;
+        double yv = 50;
 
+/**
+ * k = (y-yv)/(x-xv)
+ * (x-xv)(x-xv) + (y-yv)(y-yv) = h*h
+ */
     }
 
     @Override
