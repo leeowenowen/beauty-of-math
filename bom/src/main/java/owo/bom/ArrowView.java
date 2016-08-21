@@ -57,32 +57,6 @@ public class ArrowView extends View {
         }
     }
 
-    private void drawArrow2(Canvas canvas, double r, double angle, double xs, double ys, double xe, double ye) {
-        double angle2 = Math.atan2(ye - ys, xe - xs);
-        double x2 = xe + r * Math.cos(angle + angle2);
-        double y2 = ye + r * Math.sin(angle + angle2);
-
-        double x3 = xe + r * Math.cos(angle2 - angle);
-        double y3 = ye + r * Math.sin(angle2 - angle);
-
-        drawLine(canvas, xs, ys, xe, ye, mPaint);
-        drawLine(canvas, x2, y2, xe, ye, mPaint);
-        drawLine(canvas, x3, y3, xe, ye, mPaint);
-    }
-
-    private void drawArrow1(Canvas canvas, double r, double angle, double xs, double ys, double xe, double ye) {
-        double angle2 = Math.atan2(ye - ys, xe - xs);
-        double x2 = xe - r * Math.cos(angle + angle2);
-        double y2 = ye + r * Math.sin(angle + angle2);
-
-        double x3 = xe - r * Math.cos(angle - angle2);
-        double y3 = ye - r * Math.sin(angle - angle2);
-
-        drawLine(canvas, xs, ys, xe, ye, mPaint);
-        drawLine(canvas, x2, y2, xe, ye, mPaint);
-        drawLine(canvas, x3, y3, xe, ye, mPaint);
-    }
-
     private void drawArrowBR(Canvas canvas, double r, double angle, double xs, double ys, double xe, double ye) {
         double angle2 = Math.atan2(ye - ys, xe - xs);
         angle2 = -angle2;
@@ -97,30 +71,12 @@ public class ArrowView extends View {
         drawLine(canvas, x3, y3, xe, ye, mPaint);
     }
 
-//    private void drawAngleLine(Canvas canvas, double r, double angle, double xs, double ys, double xe, double ye) {
-//        double angle2 = Math.atan2(ye - ys, xe - xs);
-//        double x2 = xe - r * Math.cos(angle + angle2);
-//        double y2 = ye + r * Math.sin(angle + angle2);
-//
-//        double x3 = xe - r * Math.cos(angle2 - angle);
-//        double y3 = ye + r * Math.sin(angle2 - angle);
-//
-//        drawLine(canvas, xs, ys, xe, ye, mPaint);
-//        drawLine(canvas, x2, y2, xe, ye, mPaint);
-//        drawLine(canvas, x3, y3, xe, ye, mPaint);
-//    }
-
 
     private void drawLine(Canvas canvas, double x1, double y1, double x2, double y2, Paint paint) {
-        double delta = 400;
         x1 = Math.abs(x1);
         y1 = Math.abs(y1);
         x2 = Math.abs(x2);
         y2 = Math.abs(y2);
-//        x1 = x1 + delta;
-//        y1 = y1 + delta;
-//        x2 = x2 + delta;
-//        y2 = y2 + delta;
         canvas.drawLine((float) x1, (float) y1, (float) x2, (float) y2, paint);
     }
 
