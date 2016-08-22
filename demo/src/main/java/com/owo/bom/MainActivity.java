@@ -8,13 +8,14 @@ import owo.bom.ArrowView;
 import owo.bom.AxisView;
 import owo.bom.Y_ax_b_View;
 import owo.bom.axis.Axis;
+import owo.bom.sincos_View;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Y_ax_b_View view = new Y_ax_b_View(this);
+        sincos_View view = new sincos_View(this);
         view.setBackgroundColor(Color.GREEN);
         setContentView(view);
     }
