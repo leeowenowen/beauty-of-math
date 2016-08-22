@@ -57,6 +57,7 @@ public class sincos_View extends View {
             y = Math.sin(x);
 
 
+
             double x2 = x * 20 + 500;
             double y2 = 500 - y * 40;
             if (mPath.isEmpty()) {
