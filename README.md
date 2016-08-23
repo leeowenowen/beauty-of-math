@@ -77,6 +77,7 @@ demenstrate the beauty of math.
 ##花瓣
 ###玫瑰线
 ###蝴蝶曲线
+###摆线
 
 
 
