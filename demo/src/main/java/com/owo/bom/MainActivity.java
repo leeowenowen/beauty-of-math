@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sincos_View view = new sincos_View(this);
+        AxisView view = new AxisView(this);
         view.setBackgroundColor(Color.GREEN);
         setContentView(view);
     }
