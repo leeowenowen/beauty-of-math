@@ -66,12 +66,18 @@ public class StarView extends View {
 //        }
         //摆线
         int n = 3;
+        int a = 10;
+        int b = 15;
         for (double t = -8 * Math.PI; t < 8 * Math.PI; t += 0.01) {
 //            double x = 10 * (t - Math.sin(t));
 //            double y = 10 * (1 - Math.cos(t));
 
             double x = Math.cos(t) + Math.cos(n * t) / n;
             double y = Math.sin(t) - Math.sin(n * t) / n;
+            x = a * (t - Math.sin(t));
+            y = a * (1 - Math.cos(t));
+            x = a * t - b * Math.sin(t);
+            y = a - b * Math.cos(t);
             Log.d("xxx", " " + x + ":" + y);
 
             double x2 = x + 500;
