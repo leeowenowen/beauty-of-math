@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.View;
 
 public class StarView extends View {
@@ -48,13 +49,33 @@ public class StarView extends View {
         canvas.drawText("X", (float) rightX, (float) rightY, mPaint);
 
         mPath.reset();
-        for (double t = -2 * Math.PI; t < 2 * Math.PI; t += 0.01) {
-            double x = 10 * Math.pow(Math.sin(t), 3);
-            double y = 10 * Math.pow(Math.cos(t), 3);
 
+        //starview
+//        for (double t = -2 * Math.PI; t < 2 * Math.PI; t += 0.01) {
+//            double x = 10 * Math.pow(Math.sin(t), 3);
+//            double y = 10 * Math.pow(Math.cos(t), 3);
+//
+//
+//            double x2 = x * 20 + 500;
+//            double y2 = 500 - y * 40;
+//            if (mPath.isEmpty()) {
+//                mPath.moveTo((float) x2, (float) y2);
+//            } else {
+//                mPath.lineTo((float) x2, (float) y2);
+//            }
+//        }
+        //摆线
+        int n = 3;
+        for (double t = -8 * Math.PI; t < 8 * Math.PI; t += 0.01) {
+//            double x = 10 * (t - Math.sin(t));
+//            double y = 10 * (1 - Math.cos(t));
 
-            double x2 = x * 20 + 500;
-            double y2 = 500 - y * 40;
+            double x = Math.cos(t) + Math.cos(n * t) / n;
+            double y = Math.sin(t) - Math.sin(n * t) / n;
+            Log.d("xxx", " " + x + ":" + y);
+
+            double x2 = x + 500;
+            double y2 = 500 - y;
             if (mPath.isEmpty()) {
                 mPath.moveTo((float) x2, (float) y2);
             } else {
