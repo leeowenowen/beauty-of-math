@@ -98,3 +98,7 @@ demenstrate the beauty of math.
 #推荐书籍
 - 数学之美
 - 数学奇观
+
+
+#参考链接
+(blog)[http://blog.163.com/y_ybq/blog/static/1198251020081178542131/]
