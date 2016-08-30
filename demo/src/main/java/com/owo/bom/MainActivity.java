@@ -6,6 +6,7 @@ import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import owo.bom.AnimatedAxisView;
 import owo.bom.ArrowView;
 import owo.bom.AxisView;
 import owo.bom.Bezier;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 //                new Point(300, 200),
 //        };
 //        view.setControlPoints(pts);
-        StarView view = new StarView(this);
+        AnimatedAxisView view = new AnimatedAxisView(this);
 
         view.setBackgroundColor(Color.GREEN);
         setContentView(view);
