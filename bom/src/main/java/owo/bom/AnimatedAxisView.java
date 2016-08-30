@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Handler;
 import android.view.View;
 
 public class AnimatedAxisView extends View {
@@ -22,31 +23,57 @@ public class AnimatedAxisView extends View {
         mPaint.setTextSize(23.0f);
         mMemBitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
         mMemCanvas = new Canvas(mMemBitmap);
+        mHandler.postDelayed(mRunnable, 100);
     }
 
     private int width = 800;
     private int height = 800;
 
+    private double offset = 100;
     private double centerX;
     private double centerY;
-    private 
+    private double leftX;
+    private double leftY;
+    private double rightX;
+    private double rightY;
+    private double topX;
+    private double topY;
+    private double bottomX;
+    private double bottomY;
+    private double angle;
 
+    private Handler mHandler = new Handler();
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            angle += Math.PI / 50;
+            if (angle >= Math.PI) {
+                angle = 0;
+            }
+            max += 0.05;
+            if (max >= 15) {
+                max = 15;
+            }
+            drawMain(mMemCanvas);
+            mHandler.postDelayed(mRunnable, 100);
+            postInvalidate();
+        }
+    };
 
+    private double max = 0;
 
     private void drawMain(Canvas canvas) {
-        double offset = 100;
-        double centerX = width / 2 + offset;
-        double centerY = height / 2 + offset;
-        double leftX = 0 + offset;
-        double leftY = height / 2 + offset;
-        double rightX = width + offset;
-        double rightY = height / 2 + offset;
-        double topX = width / 2 + offset;
-        double topY = 0 + offset;
-        double bottomX = width / 2 + offset;
-        double bottomY = height + offset;
-        double angle = Math.PI / 4;
-
+        centerX = width / 2 + offset;
+        centerY = height / 2 + offset;
+        leftX = 0 + offset;
+        leftY = height / 2 + offset;
+        rightX = width + offset;
+        rightY = height / 2 + offset;
+        topX = width / 2 + offset;
+        topY = 0 + offset;
+        bottomX = width / 2 + offset;
+        bottomY = height + offset;
+        canvas.drawColor(Color.BLACK);
         drawArrowBR(canvas, 50, angle, leftX, leftY, rightX, rightY);
         drawArrowBR(canvas, 50, angle, bottomX, bottomY, topX, topY);
         canvas.drawText("O", (float) centerX, (float) centerY, mPaint);
@@ -56,12 +83,11 @@ public class AnimatedAxisView extends View {
         double k = 0.8;
         int b = 50;
         mPath.reset();
-        for (double x = -10; x < 10; x += 0.01) {
+        for (double x = -max; x < max; x += 0.01) {
             double y = 0;
             // y = k * x + b;
             //y = -0.01 * x * x;
             y = Math.sin(x);
-
 
 
             double x2 = x * 20 + 500;
@@ -102,7 +128,7 @@ public class AnimatedAxisView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawMain(mMemCanvas);
+
         canvas.drawBitmap(mMemBitmap, 0, 0, null);
     }
 }
