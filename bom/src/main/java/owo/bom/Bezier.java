@@ -73,7 +73,7 @@ public class Bezier extends View {
         }
     }
 
-    private Point getPointByRatio(Point startPoint, Point endPoint, float ratio) {
+    private static Point getPointByRatio(Point startPoint, Point endPoint, float ratio) {
         Point result = new Point();
 
         int dx = endPoint.x - startPoint.x;
@@ -83,5 +83,27 @@ public class Bezier extends View {
         result.y = (int) (startPoint.y + (dy * ratio));
 
         return result;
+    }
+
+    public static List<Point> points(Point[] controlPoints) {
+        List<Point> points = new ArrayList<>();
+        //近似值法按照趋近求值
+        if (controlPoints != null && controlPoints.length > 2) {
+            for (int i = 0; i <= pointNumber; i++) {
+                Point[] processPoints = controlPoints;
+                Point[] tmpProcessPoints = new Point[processPoints.length - 1];
+                while (tmpProcessPoints.length > 0) {
+                    for (int j = 0; j < tmpProcessPoints.length; j++) {
+                        Point t = null;
+                        t = getPointByRatio(processPoints[j], processPoints[j + 1], (float) i / (float) pointNumber);
+                        tmpProcessPoints[j] = t;
+                    }
+                    processPoints = tmpProcessPoints;
+                    tmpProcessPoints = new Point[processPoints.length - 1];
+                }
+                points.add(processPoints[0]);
+            }
+        }
+        return points;
     }
 }
