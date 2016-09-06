@@ -1,15 +1,15 @@
 package owo.bom;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bezier extends View {
 
@@ -46,8 +46,8 @@ public class Bezier extends View {
 
 
     public void setControlPoints(Point[] controlPoints) {
-        if (controlPoints != null && (controlPoints.length > 5 || controlPoints.length < 3))
-            throw new ArrayIndexOutOfBoundsException();
+//        if (controlPoints != null && (controlPoints.length > 5 || controlPoints.length < 3))
+//            throw new ArrayIndexOutOfBoundsException();
         this.controlPoints = controlPoints;
         invalidate();
     }
