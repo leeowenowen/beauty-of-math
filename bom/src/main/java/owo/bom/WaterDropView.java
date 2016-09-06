@@ -82,11 +82,11 @@ public class WaterDropView extends View {
     }
 
     private void drawWaterDrop(Canvas canvas, double angle, double offset1) {
-        double R = 200;
+        double R = 100;
         double r = 50;
-        double xR = 100;
+        double xR = 0;
         double yR = 0;
-        double xr = 150 + mrOffset;
+        double xr = 50 + mrOffset;
         double yr = 0;
         double l = R / Math.cos(mAngle);
         double xa = 0;
