@@ -105,9 +105,19 @@ public class WaterDropView extends View {
         double yd = 0;
         double xCross = 0;
         double yCross = 0;
+        double xc1 = xR + l / 2;
+        double yc1 = R / 4;
+        double xc2 = xc1;
+        double yc2 = -yc1;
+
+        yc1 += offset;
+        xc1 += offset;
+        xc2 += offset;
+        yc2 += offset;
 
 
-        if (l <= (R + r)) {
+      //  if (l <= (R + r)) {
+        if(true){
             xa = xR + R * Math.cos(mAngle);
             ya = yR + R * Math.sin(mAngle);
             xb = xr + r * Math.cos(mAngle);
@@ -157,18 +167,27 @@ public class WaterDropView extends View {
         yr += offset;
         canvas.drawCircle((float) xR, (float) yR, (float) R, mPaint);
         canvas.drawCircle((float) xr, (float) yr, (float) r, mPaint);
-        if (l <= (R + r)) {
-            Path path = makeBezier(new Point[]{
-                    new Point((int) xS, (int) yS),
-                    new Point((int) xa, (int) ya),
-                    new Point((int) xb, (int) yb),
-                    new Point((int) xE, (int) yE),
-                    new Point((int) xd, (int) yd),
-                    new Point((int) xc, (int) yc),
-                    new Point((int) xS, (int) yS),
 
-            });
-            canvas.drawPath(path, mPaint);
+
+        //  if (l <= (R + r)) {
+        if(true){
+//            Path path = makeBezier(new Point[]{
+//                    new Point((int) xS, (int) yS),
+//                    new Point((int) xa, (int) ya),
+//                    new Point((int) xb, (int) yb),
+//                    new Point((int) xE, (int) yE),
+//                    new Point((int) xd, (int) yd),
+//                    new Point((int) xc, (int) yc),
+//                    new Point((int) xS, (int) yS),
+//
+//            });
+
+            mTmpPath.reset();
+            mTmpPath.moveTo((float) xa, (float) ya);
+            mTmpPath.quadTo((float) xc1, (float) yc1, (float) xb, (float) yb);
+            mTmpPath.moveTo((float) xc, (float) yc);
+            mTmpPath.quadTo((float) xc2, (float) yc2, (float) xd, (float) yd);
+            canvas.drawPath(mTmpPath, mPaint);
         } else {
             Path path = makeBezier(new Point[]{
                     new Point((int) xS, (int) yS),

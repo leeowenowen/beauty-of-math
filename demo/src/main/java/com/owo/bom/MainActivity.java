@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import owo.bom.Bezier;
+import owo.bom.SimpleBezierView;
 import owo.bom.WaterDropView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 //    view.setControlPoints(pts);
         WaterDropView view = new WaterDropView(this);
 
-        view.setBackgroundColor(Color.GREEN);
+        view.setBackgroundColor(Color.BLACK);
         setContentView(view);
     }
 }
