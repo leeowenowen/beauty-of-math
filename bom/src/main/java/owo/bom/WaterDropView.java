@@ -12,6 +12,7 @@ import android.os.Looper;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WaterDropView extends View {
@@ -36,6 +37,9 @@ public class WaterDropView extends View {
             public void run() {
                 mAngle -= 0.01;
                 mrOffset += 1;
+                if (mrOffset >= 300) {
+                    mrOffset = 300;
+                }
                 postInvalidate();
                 mHandler.postDelayed(this, INTERVAL);
             }
@@ -81,14 +85,16 @@ public class WaterDropView extends View {
         drawLine(canvas, x3, y3, xe, ye, mPaint);
     }
 
-    private void drawWaterDrop(Canvas canvas, double angle, double offset1) {
+    private void drawWaterDrop(Canvas canvas, double angle, double offset) {
         double R = 100;
         double r = 50;
         double xR = 0;
         double yR = 0;
-        double xr = 50 + mrOffset;
+        double xr = xR + mrOffset;
         double yr = 0;
-        double l = R / Math.cos(mAngle);
+        double l = mrOffset;
+        mAngle = Math.acos((R - r) / l);
+        double angle2 = mAngle * 180;
         double xa = 0;
         double ya = 0;
         double xb = 0;
@@ -99,6 +105,7 @@ public class WaterDropView extends View {
         double yd = 0;
         double xCross = 0;
         double yCross = 0;
+
 
         if (l <= (R + r)) {
             xa = xR + R * Math.cos(mAngle);
@@ -118,14 +125,11 @@ public class WaterDropView extends View {
             yc = -ya;
             xd = xb;
             yd = -yb;
-            xCross = xR + R / Math.cos(mAngle);
+            xCross = xR + l * r / R;
             yCross = yR;
         }
-        xR += offset1;
-        yR += offset1;
-        xr += offset1;
-        yr += offset1;
-        double offset = 0;
+
+        //double offset = 0;
         xa += offset;
         ya += offset;
         xb += offset;
@@ -140,6 +144,17 @@ public class WaterDropView extends View {
         double yS = yR + offset;
         double xE = xr + r + offset;
         double yE = yr + offset;
+        canvas.drawText("a", (float) xa, (float) ya, mPaint);
+        canvas.drawText("b", (float) xb, (float) yb, mPaint);
+        canvas.drawText("c", (float) xc, (float) yc, mPaint);
+        canvas.drawText("d", (float) xd, (float) yd, mPaint);
+        canvas.drawText("S", (float) xS, (float) yS, mPaint);
+        canvas.drawText("E", (float) xE, (float) yE, mPaint);
+        canvas.drawText("C", (float) xCross, (float) yCross, mPaint);
+        xR += offset;
+        yR += offset;
+        xr += offset;
+        yr += offset;
         canvas.drawCircle((float) xR, (float) yR, (float) R, mPaint);
         canvas.drawCircle((float) xr, (float) yr, (float) r, mPaint);
         if (l <= (R + r)) {
@@ -161,10 +176,6 @@ public class WaterDropView extends View {
                     new Point((int) xCross, (int) yCross),
                     new Point((int) xc, (int) yc),
                     new Point((int) xS, (int) yS),
-                    new Point((int) xE, (int) yE),
-                    new Point((int) xd, (int) yd),
-                    new Point((int) xc, (int) yc),
-                    new Point((int) xS, (int) yS),
 
             });
             canvas.drawPath(path, mPaint);
@@ -173,6 +184,7 @@ public class WaterDropView extends View {
                     new Point((int) xb, (int) yb),
                     new Point((int) xCross, (int) yCross),
                     new Point((int) xd, (int) yd),
+                    new Point((int) xE, (int) yE),
 
             });
             canvas.drawPath(path, mPaint);
@@ -185,7 +197,7 @@ public class WaterDropView extends View {
 
     private Path makeBezier(Point[] controlPoints) {
         mTmpPath.reset();
-        List<Point> points = Bezier.points(controlPoints);
+        List<Point> points = Arrays.asList(controlPoints);// Bezier.points(controlPoints);
         Point pre = points.get(0);
         mTmpPath.moveTo(pre.x, pre.y);
         for (int i = 1; i < points.size(); ++i) {
@@ -204,8 +216,8 @@ public class WaterDropView extends View {
         canvas.drawLine((float) x1, (float) y1, (float) x2, (float) y2, paint);
     }
 
-    private double mAngle = Math.PI / 2;
-    private double mrOffset = 0;
+    private double mAngle;
+    private double mrOffset = 80;
 
     @Override
     protected void onDraw(Canvas canvas) {
