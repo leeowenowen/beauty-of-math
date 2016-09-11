@@ -10,10 +10,10 @@ import android.util.Log;
 import android.view.View;
 
 
-public class SimpleBezierView extends View {
+public class SampleBezierView extends View {
     private Paint mPaint = new Paint();
 
-    public SimpleBezierView(Context context) {
+    public SampleBezierView(Context context) {
         super(context);
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);

@@ -1,12 +1,10 @@
 package com.owo.bom;
 
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import owo.bom.Bezier;
-import owo.bom.SimpleBezierView;
+import owo.bom.SampleBezierView;
 import owo.bom.WaterDropView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 //      new Point(150, 50), new Point(120, 100), new Point(100, 150),
 //      };
 //    view.setControlPoints(pts);
-        WaterDropView view = new WaterDropView(this);
+        SampleBezierView view = new SampleBezierView(this);
 
         view.setBackgroundColor(Color.BLACK);
         setContentView(view);

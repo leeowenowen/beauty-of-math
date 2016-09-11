@@ -37,8 +37,8 @@ public class WaterDropView extends View {
             public void run() {
                 mAngle -= 0.01;
                 mrOffset += 1;
-                if (mrOffset >= 300) {
-                    mrOffset = 300;
+                if (mrOffset >= 500) {
+                    mrOffset = 500;
                 }
                 postInvalidate();
                 mHandler.postDelayed(this, INTERVAL);
@@ -116,7 +116,7 @@ public class WaterDropView extends View {
         yc2 += offset;
 
 
-       if (l <= (R + 2*r)) {
+       if (l <= (R + 3*r)) {
       //  if(true){
             xa = xR + R * Math.cos(mAngle);
             ya = yR + R * Math.sin(mAngle);
@@ -170,7 +170,7 @@ public class WaterDropView extends View {
         canvas.drawCircle((float) xr, (float) yr, (float) r, mPaint);
 
 
-          if (l <= (R + 2*r)) {
+          if (l <= (R + 3*r)) {
         //if(true){
 //            Path path = makeBezier(new Point[]{
 //                    new Point((int) xS, (int) yS),
