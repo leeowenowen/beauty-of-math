@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import owo.bom.SampleBezierView;
+import owo.bom.SampleBezierViewLevel1;
 import owo.bom.WaterDropView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 //      new Point(150, 50), new Point(120, 100), new Point(100, 150),
 //      };
 //    view.setControlPoints(pts);
-        SampleBezierView view = new SampleBezierView(this);
+        SampleBezierViewLevel1 view = new SampleBezierViewLevel1(this);
 
         view.setBackgroundColor(Color.BLACK);
         setContentView(view);
