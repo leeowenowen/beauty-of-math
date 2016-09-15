@@ -1,19 +1,13 @@
 package com.owo.bom;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.widget.FrameLayout;
 
-import owo.bom.PointToCircleDrawable;
-import owo.bom.util.UIUtil;
+import owo.bom.WaterDropView;
 
 public class MainActivity extends AppCompatActivity {
   FrameLayout content;
@@ -22,8 +16,20 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    content = new FrameLayout(this);
-    setContentView(content);
+    //-------------------------------------------------
+    //    content = new FrameLayout(this);
+    //    setContentView(content);
+    //    View view = new View(this);
+    //    PointToCircleDrawable d = new PointToCircleDrawable(view);
+    //    UIUtil.setBackgroundDrawable(view, d);
+    //    content.addView(view, new FrameLayout.LayoutParams(500, 500, Gravity.CENTER));
+    //    ObjectAnimator animator1 = ObjectAnimator.ofFloat(d, "radius", 0.0f, 200f);
+    //    AnimatorSet set = new AnimatorSet();
+    //    set.play(animator1);
+    //    set.setInterpolator(new BounceInterpolator());
+    //    set.setDuration(5000);
+    //    set.start();
+    //-------------------------------------------------
     //   Debug.waitForDebugger();
     //        Bezier view = new Bezier(this);
     //        Point[] pts = new Point[]{
@@ -33,16 +39,8 @@ public class MainActivity extends AppCompatActivity {
     //        };
     //  view.setControlPoints(pts);
     //  SampleBezierView view = new SampleBezierView(this);
-    View view = new View(this);
-    PointToCircleDrawable d = new PointToCircleDrawable(view);
-    UIUtil.setBackgroundDrawable(view, d);
-    content.addView(view, new FrameLayout.LayoutParams(500, 500, Gravity.CENTER));
-    ObjectAnimator animator1 = ObjectAnimator.ofFloat(d, "radius", 0.0f, 200f);
-    AnimatorSet set = new AnimatorSet();
-    set.play(animator1);
-    set.setInterpolator(new BounceInterpolator());
-    set.setDuration(5000);
-    set.start();
+    WaterDropView view = new WaterDropView(this);
+    setContentView(view);
 
   }
 
