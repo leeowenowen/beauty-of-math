@@ -1,42 +1,61 @@
 package com.owo.bom;
 
-import android.graphics.Color;
-import android.graphics.Point;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.Gravity;
+import android.view.View;
+import android.view.animation.BounceInterpolator;
+import android.widget.FrameLayout;
 
-import owo.bom.Bezier;
-import owo.bom.BezierView;
-import owo.bom.MatrixView;
-import owo.bom.SampleBezierView;
-import owo.bom.SampleBezierViewLevel1;
-import owo.bom.WaterDropView;
-import owo.bom.animation.MyAnimation;
+import owo.bom.PointToCircleDrawable;
+import owo.bom.util.UIUtil;
 
 public class MainActivity extends AppCompatActivity {
+  FrameLayout content;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //   Debug.waitForDebugger();
-//        Bezier view = new Bezier(this);
-//        Point[] pts = new Point[]{
-////                new Point(100, 150), new Point(80, 100), new Point(50, 50), new Point(100, 0),
-////                new Point(150, 50), new Point(120, 100), new Point(100, 150),
-//                new Point(0, 0), new Point(100, 150), new Point(300, 150), new Point(450, 0),
-//        };
-        //  view.setControlPoints(pts);
-        //  SampleBezierView view = new SampleBezierView(this);
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    content = new FrameLayout(this);
+    setContentView(content);
+    //   Debug.waitForDebugger();
+    //        Bezier view = new Bezier(this);
+    //        Point[] pts = new Point[]{
+    ////                new Point(100, 150), new Point(80, 100), new Point(50, 50), new Point(100, 0),
+    ////                new Point(150, 50), new Point(120, 100), new Point(100, 150),
+    //                new Point(0, 0), new Point(100, 150), new Point(300, 150), new Point(450, 0),
+    //        };
+    //  view.setControlPoints(pts);
+    //  SampleBezierView view = new SampleBezierView(this);
+    View view = new View(this);
+    PointToCircleDrawable d = new PointToCircleDrawable(view);
+    UIUtil.setBackgroundDrawable(view, d);
+    content.addView(view, new FrameLayout.LayoutParams(500, 500, Gravity.CENTER));
+    ObjectAnimator animator1 = ObjectAnimator.ofFloat(d, "radius", 0.0f, 200f);
+    AnimatorSet set = new AnimatorSet();
+    set.play(animator1);
+    set.setInterpolator(new BounceInterpolator());
+    set.setDuration(5000);
+    set.start();
 
-        // view.setBackgroundColor(Color.BLACK);
-        MatrixView view = new MatrixView(this);
-        setContentView(view);
-        MyAnimation myAnimation = new MyAnimation();
-        myAnimation.setDuration(1000);
-        myAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        view.startAnimation(myAnimation);
+  }
 
-
-    }
+  private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+    int[] colors = new int[] {pressed, focused, normal, focused, unable, normal};
+    int[][] states = new int[6][];
+    states[0] = new int[] {android.R.attr.state_pressed, android.R.attr.state_enabled};
+    states[1] = new int[] {android.R.attr.state_enabled, android.R.attr.state_focused};
+    states[2] = new int[] {android.R.attr.state_enabled};
+    states[3] = new int[] {android.R.attr.state_focused};
+    states[4] = new int[] {android.R.attr.state_window_focused};
+    states[5] = new int[] {};
+    ColorStateList colorList = new ColorStateList(states, colors);
+    return colorList;
+  }
 }

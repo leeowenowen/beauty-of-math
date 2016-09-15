@@ -1,11 +1,9 @@
 package owo.bom.animation;
 
 
-import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.util.Log;
 import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 
 public class MyAnimation extends Animation {
