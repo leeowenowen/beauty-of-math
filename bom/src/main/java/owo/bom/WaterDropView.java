@@ -206,6 +206,7 @@ public class WaterDropView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
+    
     drawAxis(canvas);
     drawWaterDrop(MODE_RIGHT,
                   canvas,
