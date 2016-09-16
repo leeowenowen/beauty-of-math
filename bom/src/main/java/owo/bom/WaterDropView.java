@@ -92,18 +92,34 @@ public class WaterDropView extends View {
     drawLine(canvas, x3, y3, xe, ye, mPaint);
   }
 
-  private static final int MODE_LEFT = 0;
-  private static final int MODE_RIGHT = 1;
-  private static final int MODE_TOP = 2;
-  private static final int MODE_BOTTOM = 3;
+  private static final int MODE_TR = 1;
+  private static final int MODE_TL = 2;
+  private static final int MODE_BL = 3;
+  private static final int MODE_BR = 4;
 
-  private void drawWaterDrop(int mode,
-                             Canvas canvas,
-                             PointF pR,
-                             PointF pr,
+  private int getMode(PointF start, PointF end) {
+    if (end.x >= start.x) {
+      if (end.y >= start.y) {
+        return MODE_TR;
+      } else {
+        return MODE_BR;
+      }
+    } else {
+      if (end.y >= start.y) {
+        return MODE_TL;
+      } else {
+        return MODE_BL;
+      }
+    }
+  }
+
+  private void drawWaterDrop(Canvas canvas,
+                             PointF pStart,
+                             PointF pEnd,
                              float R,
                              float r,
                              float aixOffset) {
+    int mode = getMode(pStart, pEnd);
     double xa = 0;
     double ya = 0;
     double xb = 0;
@@ -116,41 +132,97 @@ public class WaterDropView extends View {
     double xc1;
     double yc1;
 
-    double lRr = Math.sqrt((pR.x - pr.x) * (pR.x - pr.x) + (pR.y - pr.y) * (pR.y - pr.y));
+    double lRr = Math.sqrt(
+      (pStart.x - pEnd.x) * (pStart.x - pEnd.x) + (pStart.y - pEnd.y) * (pStart.y - pEnd.y));
 
     double factor = R / (R + r);
-    xc1 = pR.x + Math.abs(pr.x - pR.x) * factor;
-    yc1 = pR.y + Math.abs(pr.y - pR.y) * factor;
     double lR = lRr * factor;
     double lr = lRr - lR;
 
+    //mapping to TR
+    double startX = mStart.x;
+    double startY = mStart.y;
+    //translate
+    mStart.x = 0;
+    mStart.y = 0;
+    mEnd.x -= mStart.x;
+    mEnd.y -= mStart.y;
+    //map
     switch (mode) {
-      case MODE_LEFT: {
-      }
-      break;
-      case MODE_RIGHT: {
-        double alpha = Math.acos(R / lR);
-        double beta = Math.atan2(yc1 - pR.y, xc1 - pR.x);
-        xa = pR.x + R * Math.cos(alpha + beta);
-        ya = pR.y + R * Math.sin(alpha + beta);
-        xc = pR.x + R * Math.cos(alpha - beta);
-        yc = pR.y - R * Math.sin(alpha - beta);
+      case MODE_TR:
+        break;
+      case MODE_TL:
+        mEnd.x = -mEnd.x;
+        break;
+      case MODE_BL:
+        mEnd.x = -mEnd.x;
+        mEnd.y = -mEnd.y;
+        break;
+      case MODE_BR:
+        mEnd.y = -mEnd.y;
+        break;
+    }
+    xc1 = pStart.x + Math.abs(pEnd.x - pStart.x) * factor;
+    yc1 = pStart.y + Math.abs(pEnd.y - pStart.y) * factor;
+    //process as in
+    {
+      double alpha = Math.acos(R / lR);
+      double beta = Math.atan2(yc1 - pStart.y, xc1 - pStart.x);
+      xa = pStart.x + R * Math.cos(alpha + beta);
+      ya = pStart.y + R * Math.sin(alpha + beta);
+      xc = pStart.x + R * Math.cos(alpha - beta);
+      yc = pStart.y - R * Math.sin(alpha - beta);
 
 
-        xb = xc + (xc1 - xc) * lRr / lR;
-        yb = yc + (yc1 - yc) * lRr / lR;
+      xb = xc + (xc1 - xc) * lRr / lR;
+      yb = yc + (yc1 - yc) * lRr / lR;
 
-        xd = xa + (xc1 - xa) * lRr / lR;
-        yd = ya + (yc1 - ya) * lRr / lR;
-
-      }
-      break;
-      case MODE_TOP: {
-      }
-      break;
-      case MODE_BOTTOM: {
-      }
-      break;
+      xd = xa + (xc1 - xa) * lRr / lR;
+      yd = ya + (yc1 - ya) * lRr / lR;
+    }
+    //de-map
+    switch (mode) {
+      case MODE_TR:
+        break;
+      case MODE_TL:
+        xa = -xa;
+        xc = -xc;
+        xb = -xb;
+        xd = -xd;
+        xc1 = -xc1;
+        break;
+      case MODE_BL:
+        xa = -xa;
+        ya = -ya;
+        xb = -xb;
+        yb = -yb;
+        xc = -xc;
+        yc = -yc;
+        xd = -xd;
+        yd = -yd;
+        xc1 = -xc1;
+        yc1 = -yc1;
+        break;
+      case MODE_BR:
+        ya = -ya;
+        yb = -yb;
+        yc = -yc;
+        yd = -yd;
+        yc1 = -yc1;
+        break;
+    }
+    // de-translate
+    {
+      xa += startX;
+      xb += startX;
+      xc += startX;
+      xd += startX;
+      ya += startY;
+      yb += startY;
+      yc += startY;
+      yd += startY;
+      xc1 += startX;
+      yc1 += startY;
     }
 
     {
@@ -162,15 +234,15 @@ public class WaterDropView extends View {
       yc += aixOffset;
       xd += aixOffset;
       yd += aixOffset;
-      pR.x += aixOffset;
-      pR.y += aixOffset;
-      pr.x += aixOffset;
-      pr.y += aixOffset;
+      pStart.x += aixOffset;
+      pStart.y += aixOffset;
+      pEnd.x += aixOffset;
+      pEnd.y += aixOffset;
       xc1 += aixOffset;
       yc1 += aixOffset;
     }
-    canvas.drawCircle(pR.x, pR.y, R, mPaint);
-    canvas.drawCircle(pr.x, pr.y, r, mPaint);
+    canvas.drawCircle(pStart.x, pStart.y, R, mPaint);
+    canvas.drawCircle(pEnd.x, pEnd.y, r, mPaint);
 
     canvas.drawText("a", (float) xa, (float) ya, mPaint);
     canvas.drawText("b", (float) xb, (float) yb, mPaint);
@@ -206,15 +278,14 @@ public class WaterDropView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    
+
     drawAxis(canvas);
-    drawWaterDrop(MODE_RIGHT,
-                  canvas,
+    drawWaterDrop(canvas,
                   new PointF(mStart.x, mStart.y),
                   new PointF(mEnd.x, mEnd.y),
                   mR,
                   mr,
                   mAixOffset);
-    //drawWaterDrop(MODE_RIGHT, canvas, new PointF(0, 0), new PointF(300, 300), 100, 50, 500);
+    //drawWaterDrop(MODE_TR, canvas, new PointF(0, 0), new PointF(300, 300), 100, 50, 500);
   }
 }
