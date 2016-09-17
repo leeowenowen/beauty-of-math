@@ -12,10 +12,12 @@ public class BezierDrawer {
   private static final int MODE_BL = 3;
   private static final int MODE_BR = 4;
 
-  private final PointF mStart;
-  private final PointF mEnd;
-  private final float mR;
-  private final float mr;
+  private final PointF mStartInit = new PointF();
+  private final PointF mEndInit = new PointF();
+  private final PointF mStart = new PointF();
+  private final PointF mEnd = new PointF();
+  private float mR;
+  private float mr;
 
   private float mAixOffset;
   private boolean mDrawStartCircle;
@@ -24,11 +26,29 @@ public class BezierDrawer {
 
   private Path mTmpPath = new Path();
 
-  public BezierDrawer(PointF start, PointF end, float R, float r,) {
-    mStart = start;
-    mEnd = end;
+  public BezierDrawer() {
+  }
+
+  public BezierDrawer start(float x, float y) {
+    mStartInit.x = x;
+    mStartInit.y = y;
+    return this;
+  }
+
+  public BezierDrawer R(float R) {
     mR = R;
+    return this;
+  }
+
+  public BezierDrawer r(float r) {
     mr = r;
+    return this;
+  }
+
+  public BezierDrawer end(float x, float y) {
+    mEndInit.x = x;
+    mEndInit.y = y;
+    return this;
   }
 
   public BezierDrawer withStartCircle() {
@@ -68,25 +88,15 @@ public class BezierDrawer {
   }
 
   public void draw(Canvas canvas, Paint paint) {
+    mStart.set(mStartInit.x, mStartInit.y);
+    mEnd.set(mEndInit.x, mEndInit.y);
     int mode = getMode(mStart, mEnd);
-    double xa = 0;
-    double ya = 0;
-    double xb = 0;
-    double yb = 0;
-    double xc = 0;
-    double yc = 0;
-    double xd = 0;
-    double yd = 0;
-
-    double xc1;
-    double yc1;
-
+    double xa, ya, xb, yb, xc, yc, xd, yd, xC, yC;
     double lRr = Math.sqrt(
       (mStart.x - mEnd.x) * (mStart.x - mEnd.x) + (mStart.y - mEnd.y) * (mStart.y - mEnd.y));
 
     double factor = mR / (mR + mr);
     double lR = lRr * factor;
-    double lr = lRr - lR;
 
     //mapping to TR
     double startX = this.mStart.x;
@@ -94,8 +104,8 @@ public class BezierDrawer {
     //translate
     this.mStart.x = 0;
     this.mStart.y = 0;
-    this.mEnd.x -= this.mStart.x;
-    this.mEnd.y -= this.mStart.y;
+    this.mEnd.x -= this.mStartInit.x;
+    this.mEnd.y -= this.mStartInit.y;
     //map
     switch (mode) {
       case MODE_TR:
@@ -111,23 +121,23 @@ public class BezierDrawer {
         this.mEnd.y = -this.mEnd.y;
         break;
     }
-    xc1 = mStart.x + Math.abs(mEnd.x - mStart.x) * factor;
-    yc1 = mStart.y + Math.abs(mEnd.y - mStart.y) * factor;
+    xC = mStart.x + Math.abs(mEnd.x - mStart.x) * factor;
+    yC = mStart.y + Math.abs(mEnd.y - mStart.y) * factor;
     //process as in
     {
       double alpha = Math.acos(mR / lR);
-      double beta = Math.atan2(yc1 - mStart.y, xc1 - mStart.x);
+      double beta = Math.atan2(yC - mStart.y, xC - mStart.x);
       xa = mStart.x + mR * Math.cos(alpha + beta);
       ya = mStart.y + mR * Math.sin(alpha + beta);
       xc = mStart.x + mR * Math.cos(alpha - beta);
       yc = mStart.y - mR * Math.sin(alpha - beta);
 
 
-      xb = xc + (xc1 - xc) * lRr / lR;
-      yb = yc + (yc1 - yc) * lRr / lR;
+      xb = xc + (xC - xc) * lRr / lR;
+      yb = yc + (yC - yc) * lRr / lR;
 
-      xd = xa + (xc1 - xa) * lRr / lR;
-      yd = ya + (yc1 - ya) * lRr / lR;
+      xd = xa + (xC - xa) * lRr / lR;
+      yd = ya + (yC - ya) * lRr / lR;
     }
     //de-map
     switch (mode) {
@@ -138,7 +148,7 @@ public class BezierDrawer {
         xc = -xc;
         xb = -xb;
         xd = -xd;
-        xc1 = -xc1;
+        xC = -xC;
         break;
       case MODE_BL:
         xa = -xa;
@@ -149,15 +159,15 @@ public class BezierDrawer {
         yc = -yc;
         xd = -xd;
         yd = -yd;
-        xc1 = -xc1;
-        yc1 = -yc1;
+        xC = -xC;
+        yC = -yC;
         break;
       case MODE_BR:
         ya = -ya;
         yb = -yb;
         yc = -yc;
         yd = -yd;
-        yc1 = -yc1;
+        yC = -yC;
         break;
     }
     // de-translate
@@ -170,8 +180,8 @@ public class BezierDrawer {
       yb += startY;
       yc += startY;
       yd += startY;
-      xc1 += startX;
-      yc1 += startY;
+      xC += startX;
+      yC += startY;
     }
     if (mAixOffset > 0) {
       xa += mAixOffset;
@@ -186,14 +196,14 @@ public class BezierDrawer {
       mStart.y += mAixOffset;
       mEnd.x += mAixOffset;
       mEnd.y += mAixOffset;
-      xc1 += mAixOffset;
-      yc1 += mAixOffset;
+      xC += mAixOffset;
+      yC += mAixOffset;
     }
     if (mDrawStartCircle) {
-      canvas.drawCircle(mStart.x, mStart.y, mR, paint);
+      canvas.drawCircle(mStartInit.x, mStartInit.y, mR, paint);
     }
     if (mDrawEndCircle) {
-      canvas.drawCircle(mEnd.x, mEnd.y, mr, paint);
+      canvas.drawCircle(mEndInit.x, mEndInit.y, mr, paint);
     }
 
     if (mDrawPoints) {
@@ -201,14 +211,14 @@ public class BezierDrawer {
       canvas.drawText("b", (float) xb, (float) yb, paint);
       canvas.drawText("c", (float) xc, (float) yc, paint);
       canvas.drawText("d", (float) xd, (float) yd, paint);
-      canvas.drawText("C", (float) xc1, (float) yc1, paint);
+      canvas.drawText("C", (float) xC, (float) yC, paint);
     }
 
     mTmpPath.reset();
     mTmpPath.moveTo((float) xa, (float) ya);
-    mTmpPath.quadTo((float) xc1, (float) yc1, (float) xb, (float) yb);
+    mTmpPath.quadTo((float) xC, (float) yC, (float) xb, (float) yb);
     mTmpPath.moveTo((float) xc, (float) yc);
-    mTmpPath.quadTo((float) xc1, (float) yc1, (float) xd, (float) yd);
+    mTmpPath.quadTo((float) xC, (float) yC, (float) xd, (float) yd);
     canvas.drawPath(mTmpPath, paint);
 
   }

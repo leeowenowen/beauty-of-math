@@ -2,16 +2,19 @@ package com.owo.bom;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
+import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.widget.FrameLayout;
 
-import owo.bom.drawable.PointToCircleDrawable;
+import owo.bom.drawable.CircleToAxiDrawable;
 import owo.bom.util.UIUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,27 +28,32 @@ public class MainActivity extends AppCompatActivity {
     content = new FrameLayout(this);
     setContentView(content);
     View view = new View(this);
-    PointToCircleDrawable d = new PointToCircleDrawable(view);
+    // PointToCircleDrawable d = new PointToCircleDrawable(view);
+    CircleToAxiDrawable d = new CircleToAxiDrawable(view, new PointF(400, 400));
     UIUtil.setBackgroundDrawable(view, d);
-    content.addView(view, new FrameLayout.LayoutParams(500, 500, Gravity.CENTER));
-    ObjectAnimator animator1 = ObjectAnimator.ofFloat(d, "radius", 0.0f, 200f);
+    content.addView(view,
+                    new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                                 FrameLayout.LayoutParams.MATCH_PARENT,
+                                                 Gravity.CENTER));
+    ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(d,
+                                                                    PropertyValuesHolder.ofFloat(
+                                                                      "startRadius",
+                                                                      100,
+                                                                      5),
+                                                                    PropertyValuesHolder.ofFloat(
+                                                                      "endRadius",
+                                                                      50,
+                                                                      5),
+                                                                    PropertyValuesHolder.ofFloat(
+                                                                      "circleCenterDistance",
+                                                                      300,
+                                                                      500));
+
     AnimatorSet set = new AnimatorSet();
-    set.play(animator1);
+    set.play(animator);
     set.setInterpolator(new BounceInterpolator());
-    set.setDuration(5000);
+    set.setDuration(50000);
     set.start();
-    //-------------------------------------------------
-    //   Debug.waitForDebugger();
-    //        Bezier view = new Bezier(this);
-    //        Point[] pts = new Point[]{
-    ////                new Point(100, 150), new Point(80, 100), new Point(50, 50), new Point(100, 0),
-    ////                new Point(150, 50), new Point(120, 100), new Point(100, 150),
-    //                new Point(0, 0), new Point(100, 150), new Point(300, 150), new Point(450, 0),
-    //        };
-    //  view.setControlPoints(pts);
-    //  SampleBezierView view = new SampleBezierView(this);
-    //    WaterDropView view = new WaterDropView(this);
-    //    setContentView(view);
 
   }
 
