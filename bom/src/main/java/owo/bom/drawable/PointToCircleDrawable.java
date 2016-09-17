@@ -24,27 +24,6 @@ public class PointToCircleDrawable extends ShapeDrawable {
 
   public PointToCircleDrawable(View v) {
     this.v = v;
-    //    mDrawable = new GradientDrawable(GradientDrawable.Orientation.BR_TL, new int[] {
-    //      Color.argb(255, 255, 0, 0), Color.argb(255, 150, 0, 255), Color.argb(255, 50, 255, 0)
-    //    });
-    //
-    //    mDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[] {
-    //      0xFFFF0000, 0xFF00FF00, 0xFF0000FF
-    //    });
-    //    mDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-    int strokeWidth = 5; // 3dp 边框宽度
-    int roundRadius = 15; // 8dp 圆角半径
-    int strokeColor = Color.parseColor("#2E3135");//边框颜色
-    int fillColor = Color.parseColor("#DFDFE0");//内部填充颜色
-
-
-    ///  mDrawable.setColor(fillColor);
-    //mDrawable.setCornerRadius(roundRadius);
-    //  mDrawable.setStroke(strokeWidth, strokeColor);
-    // mDrawable.setShape(GradientDrawable.RING);
-    //  mDrawable.setCornerRadii(new float[] {5, 0, 5, 0});
-    //setImageDrawable(mDrawable);
-    //UIUtil.setBackgroundDrawable(this, mDrawable);
     setShape(new Shape() {
       @Override
       public void draw(Canvas canvas, Paint paint) {
@@ -70,6 +49,5 @@ public class PointToCircleDrawable extends ShapeDrawable {
   其中参数new float[]{0 , 0.5f, 1.0f}是定义每个颜色处于的渐变相对位置，
   这个参数可以为null，如果为null表示所有的颜色按顺序均匀的分布
    */
-  private Paint mPaint = new Paint();
 
 }
