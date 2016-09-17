@@ -22,7 +22,7 @@ public class CircleToAxiDrawable extends BaseDrawable {
 
   public CircleToAxiDrawable(View v, PointF circleCenter) {
     mRCenter = circleCenter;
-    mLefDrawer.start(mRCenter.x, mRCenter.y).withStartCircle().withPoints().withEndCircle();
+    mLefDrawer.start(mRCenter.x, mRCenter.y).withStartCircle().withEndCircle();
     mRightDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
     mTopDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
     mBottomDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
@@ -60,8 +60,8 @@ public class CircleToAxiDrawable extends BaseDrawable {
   @Override
   public void draw(Canvas canvas) {
     mLefDrawer.draw(canvas, mPaint);
-//    mRightDrawer.draw(canvas, mPaint);
-//    mTopDrawer.draw(canvas, mPaint);
-//    mBottomDrawer.draw(canvas, mPaint);
+    mRightDrawer.draw(canvas, mPaint);
+    mTopDrawer.draw(canvas, mPaint);
+    mBottomDrawer.draw(canvas, mPaint);
   }
 }
