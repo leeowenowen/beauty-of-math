@@ -1,4 +1,4 @@
-package owo.bom;
+package owo.bom.drawable;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
