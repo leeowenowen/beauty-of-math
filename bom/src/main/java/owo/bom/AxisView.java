@@ -10,8 +10,6 @@ import android.view.View;
 
 public class AxisView extends View {
     private Paint mPaint = new Paint();
-    Bitmap mMemBitmap;
-    private Canvas mMemCanvas;
     private Path mPath = new Path();
 
     public AxisView(Context context) {
@@ -19,8 +17,6 @@ public class AxisView extends View {
         mPaint.setColor(Color.RED);
         mPaint.setStrokeWidth(2);
         mPaint.setTextSize(23.0f);
-        mMemBitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
-        mMemCanvas = new Canvas(mMemBitmap);
     }
 
     private int width = 800;
@@ -73,7 +69,6 @@ public class AxisView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawHeart(mMemCanvas);
-        canvas.drawBitmap(mMemBitmap, 0, 0, null);
+        drawHeart(canvas);
     }
 }

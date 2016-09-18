@@ -3,6 +3,7 @@ package owo.bom.drawable;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.Shape;
@@ -12,28 +13,28 @@ import android.view.View;
  * Created by wangli on 9/15/16.
  */
 public class PointToCircleDrawable extends ShapeDrawable {
-  private GradientDrawable mDrawable;
-  private float radius;
-  private View v;
+    private GradientDrawable mDrawable;
+    private float radius;
+    private View v;
+    private PointF center;
 
 
-  public void setRadius(float radius) {
-    this.radius = radius;
-    v.invalidate();
-  }
+    public void setRadius(float radius) {
+        this.radius = radius;
+        v.invalidate();
+    }
 
-  public PointToCircleDrawable(View v) {
-    this.v = v;
-    setShape(new Shape() {
-      @Override
-      public void draw(Canvas canvas, Paint paint) {
-        float w = getWidth();
-        float h = getHeight();
-        paint.setColor(Color.RED);
-        canvas.drawCircle(w / 2, h / 2, radius, paint);
-      }
-    });
-  }
+    public PointToCircleDrawable(View v, final PointF center) {
+        this.center = center;
+        this.v = v;
+        setShape(new Shape() {
+            @Override
+            public void draw(Canvas canvas, Paint paint) {
+                paint.setColor(Color.RED);
+                canvas.drawCircle(center.x, center.y, radius, paint);
+            }
+        });
+    }
 
   /*
   Paint p=new Paint();
