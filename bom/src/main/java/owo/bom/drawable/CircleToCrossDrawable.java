@@ -2,25 +2,23 @@ package owo.bom.drawable;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PointF;
 import android.view.View;
 
-import owo.bom.bezier.BezierDrawer;
+import owo.bom.bezier.CircleBezierDrawer;
 
 /**
  * Created by wangli on 9/17/16.
  */
 public class CircleToCrossDrawable extends BaseDrawable {
-    BezierDrawer mLefDrawer = new BezierDrawer();
-    BezierDrawer mRightDrawer = new BezierDrawer();
-    BezierDrawer mTopDrawer = new BezierDrawer();
-    BezierDrawer mBottomDrawer = new BezierDrawer();
+    CircleBezierDrawer mLefDrawer = new CircleBezierDrawer();
+    CircleBezierDrawer mRightDrawer = new CircleBezierDrawer();
+    CircleBezierDrawer mTopDrawer = new CircleBezierDrawer();
+    CircleBezierDrawer mBottomDrawer = new CircleBezierDrawer();
 
     private PointF mRCenter;
-    private View target;
 
-    public CircleToCrossDrawable(View v, PointF circleCenter) {
+    public CircleToCrossDrawable(PointF circleCenter) {
         mRCenter = circleCenter;
         mLefDrawer.start(mRCenter.x, mRCenter.y).withStartCircle().withEndCircle();
         mRightDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
@@ -28,10 +26,9 @@ public class CircleToCrossDrawable extends BaseDrawable {
         mBottomDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
 
         mPaint.setColor(Color.RED);
-      //  mPaint.setStrokeWidth(1);
-       // mPaint.setStyle(Paint.Style.STROKE);
+        //  mPaint.setStrokeWidth(1);
+        // mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setTextSize(23.0f);
-        target = v;
     }
 
     public void setCircleCenterDistance(float RrDistance) {
@@ -53,7 +50,6 @@ public class CircleToCrossDrawable extends BaseDrawable {
         mRightDrawer.r(r);
         mTopDrawer.r(r);
         mBottomDrawer.r(r);
-        target.invalidate();
     }
 
 

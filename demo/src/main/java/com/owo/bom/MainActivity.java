@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.PointF;
@@ -25,7 +26,7 @@ import owo.bom.util.WindowUtil;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     FrameLayout content;
-    private int[] center = new int[2];
+    private PointF center = new PointF();
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -38,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         content.addView(view, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         //view.getLocationInWindow(center);
         DisplayMetrics dm = WindowUtil.getScreenSize(this);
-        center[0] = dm.widthPixels / 2;
-        center[1] = (dm.heightPixels) / 2;
+        center.x = dm.widthPixels / 2;
+        center.y = dm.heightPixels / 2;
 
-        PointToCircleDrawable d = new PointToCircleDrawable(view, new PointF(center[0], center[1]));
+        PointToCircleDrawable d = new PointToCircleDrawable(center);
         UIUtil.setBackgroundDrawable(view, d);
 
         ObjectAnimator animator = ObjectAnimator.ofFloat(d, "radius", 0, 100).setDuration(2000);
@@ -51,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
                 playCircleToCross(view);
 
+            }
+        });
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.invalidate();
             }
         });
         animator.start();
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                         FrameLayout.LayoutParams.MATCH_PARENT));
         CircleToCrossDrawable d =
-                new CircleToCrossDrawable(v, new PointF(center[0], center[1]));
+                new CircleToCrossDrawable(center);
         UIUtil.setBackgroundDrawable(v, d);
         ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(d,
                 PropertyValuesHolder.ofFloat(
@@ -87,17 +94,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                v.invalidate();
+            }
+        });
         animator.start();
     }
 
-    private void playCrossToAxis(View v) {
+    private void playCrossToAxis(final View v) {
         ViewGroup vg = ((ViewGroup) v.getParent());
         vg.removeView(v);
         vg.addView(v,
                 new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                         FrameLayout.LayoutParams.MATCH_PARENT));
         CrossToAxisDrawable d =
-                new CrossToAxisDrawable(v, new PointF(center[0], center[1]));
+                new CrossToAxisDrawable(center);
         d.setArrowOffset(450);
         d.setArrowLength(50);
         UIUtil.setBackgroundDrawable(v, d);
@@ -106,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
                         "angle",
                         (float) Math.PI,
                         (float) Math.PI / 6));
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                v.invalidate();
+            }
+        });
         animator.setDuration(5000);
         animator.start();
     }

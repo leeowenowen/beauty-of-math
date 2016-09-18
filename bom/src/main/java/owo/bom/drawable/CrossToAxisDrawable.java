@@ -12,17 +12,13 @@ import android.view.View;
  */
 public class CrossToAxisDrawable extends BaseDrawable {
     private Paint mPaint = new Paint();
-    private Path mPath = new Path();
-
     private float centerX;
     private float centerY;
     private float arrowOffset;
     private float angle;
     private float arrowLength;
-    private View target;
 
-    public CrossToAxisDrawable(View target, PointF center) {
-        this.target = target;
+    public CrossToAxisDrawable(PointF center) {
         centerX = center.x;
         centerY = center.y;
         mPaint.setColor(Color.RED);
@@ -36,7 +32,6 @@ public class CrossToAxisDrawable extends BaseDrawable {
 
     public void setAngle(float angle) {
         this.angle = angle;
-        target.invalidate();
     }
 
     public void setArrowLength(float arrowLength) {

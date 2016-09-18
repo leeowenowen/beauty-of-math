@@ -15,18 +15,15 @@ import android.view.View;
 public class PointToCircleDrawable extends ShapeDrawable {
     private GradientDrawable mDrawable;
     private float radius;
-    private View v;
     private PointF center;
 
 
     public void setRadius(float radius) {
         this.radius = radius;
-        v.invalidate();
     }
 
-    public PointToCircleDrawable(View v, final PointF center) {
+    public PointToCircleDrawable(final PointF center) {
         this.center = center;
-        this.v = v;
         setShape(new Shape() {
             @Override
             public void draw(Canvas canvas, Paint paint) {
