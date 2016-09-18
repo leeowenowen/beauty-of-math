@@ -28,8 +28,8 @@ public class CircleToCrossDrawable extends BaseDrawable {
         mBottomDrawer.start(mRCenter.x, mRCenter.y).withEndCircle();
 
         mPaint.setColor(Color.RED);
-        mPaint.setStrokeWidth(1);
-        mPaint.setStyle(Paint.Style.STROKE);
+      //  mPaint.setStrokeWidth(1);
+       // mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setTextSize(23.0f);
         target = v;
     }

@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //view.getLocationInWindow(center);
         DisplayMetrics dm = WindowUtil.getScreenSize(this);
         center[0] = dm.widthPixels / 2;
-        center[1] = (dm.heightPixels - WindowUtil.getStatuBarHeight(MainActivity.this) -
-                WindowUtil.getTitleBarHeight(MainActivity.this)) / 2;
+        center[1] = (dm.heightPixels) / 2;
 
         PointToCircleDrawable d = new PointToCircleDrawable(view, new PointF(center[0], center[1]));
         UIUtil.setBackgroundDrawable(view, d);
