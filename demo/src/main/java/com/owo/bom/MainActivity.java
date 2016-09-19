@@ -1,9 +1,5 @@
 package com.owo.bom;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
@@ -14,12 +10,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import owo.bom.drawable.BaseDrawable;
-import owo.bom.drawable.CircleToCrossDrawable;
-import owo.bom.drawable.CrossToAxisDrawable;
 import owo.bom.splash.SplashDrawerDirector;
 import owo.bom.util.UIUtil;
 import owo.bom.util.WindowUtil;
@@ -59,90 +52,6 @@ public class MainActivity extends AppCompatActivity {
     });
     director.start();
 
-
-    //        PointToCircleDrawable d = new PointToCircleDrawable(center);
-    //        UIUtil.setBackgroundDrawable(view, d);
-    //
-    //        ObjectAnimator animator = ObjectAnimator.ofFloat(d, "radius", 0, 100).setDuration(2000);
-    //        animator.addListener(new AnimatorListenerAdapter() {
-    //            @Override
-    //            public void onAnimationEnd(Animator animation) {
-    //                super.onAnimationEnd(animation);
-    //                playCircleToCross(view);
-    //
-    //            }
-    //        });
-    //        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-    //            @Override
-    //            public void onAnimationUpdate(ValueAnimator animation) {
-    //                view.invalidate();
-    //            }
-    //        });
-    //        animator.start();
-  }
-
-  private void playCircleToCross(final View v) {
-    ViewGroup vg = ((ViewGroup) v.getParent());
-    vg.removeView(v);
-    vg.addView(v,
-               new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                            FrameLayout.LayoutParams.MATCH_PARENT));
-    CircleToCrossDrawable d = new CircleToCrossDrawable(center);
-    UIUtil.setBackgroundDrawable(v, d);
-    ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(d,
-                                                                    PropertyValuesHolder.ofFloat(
-                                                                      "startRadius",
-                                                                      100,
-                                                                      1),
-                                                                    PropertyValuesHolder.ofFloat(
-                                                                      "endRadius",
-                                                                      50,
-                                                                      1),
-                                                                    PropertyValuesHolder.ofFloat(
-                                                                      "circleCenterDistance",
-                                                                      0,
-                                                                      500));
-    animator.setDuration(10000);
-    animator.addListener(new AnimatorListenerAdapter() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        super.onAnimationEnd(animation);
-        playCrossToAxis(v);
-
-      }
-    });
-    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-      @Override
-      public void onAnimationUpdate(ValueAnimator animation) {
-        v.invalidate();
-      }
-    });
-    animator.start();
-  }
-
-  private void playCrossToAxis(final View v) {
-    ViewGroup vg = ((ViewGroup) v.getParent());
-    vg.removeView(v);
-    vg.addView(v,
-               new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                            FrameLayout.LayoutParams.MATCH_PARENT));
-    CrossToAxisDrawable d = new CrossToAxisDrawable(center);
-    d.setArrowOffset(450);
-    d.setArrowLength(50);
-    UIUtil.setBackgroundDrawable(v, d);
-    ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(d,
-                                                                    PropertyValuesHolder.ofFloat(
-                                                                      "angle",
-                                                                      (float) Math.PI,
-                                                                      (float) Math.PI / 6));
-    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-      @Override
-      public void onAnimationUpdate(ValueAnimator animation) {
-        v.invalidate();
-      }
-    });
-    animator.setDuration(5000);
-    animator.start();
   }
 
   private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {

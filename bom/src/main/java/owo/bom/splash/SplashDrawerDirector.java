@@ -17,29 +17,15 @@ public class SplashDrawerDirector extends DrawDirector {
   }
 
   private void setupSections() {
-    addSection(new Section() {
-      private Drawer drawer = new PointToCircleDrawer(center);
-
+    addSection(new AnimatedDrawerSection(new PointToCircleDrawer(center)) {
       @Override
-      public Drawer drawer() {
-        return drawer;
-      }
-
-      @Override
-      public ValueAnimator animator() {
+      protected ValueAnimator createAnimator(Drawer drawer) {
         return ObjectAnimator.ofFloat(drawer, "radius", 0, 100).setDuration(2000);
       }
     });
-    addSection(new Section() {
-      private Drawer drawer = new CircleToCrossDrawer(center);
-
+    addSection(new AnimatedDrawerSection(new CircleToCrossDrawer(center)) {
       @Override
-      public Drawer drawer() {
-        return drawer;
-      }
-
-      @Override
-      public ValueAnimator animator() {
+      protected ValueAnimator createAnimator(Drawer drawer) {
         return ObjectAnimator.ofPropertyValuesHolder(drawer,
                                                      PropertyValuesHolder.ofFloat("startRadius",
                                                                                   100,
@@ -53,16 +39,12 @@ public class SplashDrawerDirector extends DrawDirector {
                                                        500)).setDuration(10000);
       }
     });
-    addSection(new Section() {
-      private Drawer drawer = new CrossToAxisDrawer(center);
-
+    CrossToAxisDrawer crossToAxisDrawer = new CrossToAxisDrawer(center);
+    crossToAxisDrawer.setArrowOffset(450);
+    crossToAxisDrawer.setArrowLength(50);
+    addSection(new AnimatedDrawerSection(crossToAxisDrawer) {
       @Override
-      public Drawer drawer() {
-        return drawer;
-      }
-
-      @Override
-      public ValueAnimator animator() {
+      protected ValueAnimator createAnimator(Drawer drawer) {
         return ObjectAnimator.ofPropertyValuesHolder(drawer,
                                                      PropertyValuesHolder.ofFloat("angle",
                                                                                   (float) Math.PI,

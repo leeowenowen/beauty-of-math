@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class DrawDirector implements Drawer {
     section.animator().addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
       @Override
       public void onAnimationUpdate(ValueAnimator animation) {
+        Log.d("xxx", "onAnimationUpdate");
         if (listener != null) {
           listener.onAnimationUpdate(animation);
         }
@@ -59,7 +61,7 @@ public class DrawDirector implements Drawer {
 
   @Override
   public void draw(Canvas canvas) {
-    if (sectionList.isEmpty()) {
+    if (sectionList.isEmpty() || curIndex >= sectionList.size()) {
       return;
     }
     sectionList.get(curIndex).drawer().draw(canvas);

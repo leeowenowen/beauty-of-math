@@ -3,6 +3,7 @@ package owo.bom.splash;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 
 /**
  * Created by wangli on 9/15/16.
@@ -13,6 +14,7 @@ public class PointToCircleDrawer extends BaseDrawer {
   private PointF center;
 
   public void setRadius(float radius) {
+    Log.d("xxx", "setRadis:" + radius);
     this.radius = radius;
   }
 
