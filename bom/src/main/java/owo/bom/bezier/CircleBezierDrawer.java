@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.RectF;
 
 
 public class CircleBezierDrawer {
@@ -215,12 +216,39 @@ public class CircleBezierDrawer {
         }
 
         mTmpPath.reset();
+
+
+//        mTmpPath.moveTo((float) xa, (float) ya);
+//        mTmpPath.quadTo((float) xC, (float) yC, (float) xb, (float) yb);
+//        RectF rectr = makeRect(mEnd, mr);
+//        float[] angles = computeAngle(new PointF((float) xb, (float) yb), new PointF((float) xd, (float) yd), mEnd, mr);
+//        mTmpPath.arcTo(rectr, angles[0], angles[1]);
+//        //  mTmpPath.moveTo((float) xc, (float) yc);
+//        mTmpPath.quadTo((float) xC, (float) yC, (float) xd, (float) yd);
+//        RectF rectR = makeRect(mStart, mR);
+//        angles = computeAngle(new PointF((float) xc, (float) yc), new PointF((float) xa, (float) ya), mStart, mR);
+//        mTmpPath.arcTo(rectR, angles[0], angles[1]);
+
         mTmpPath.moveTo((float) xa, (float) ya);
         mTmpPath.quadTo((float) xC, (float) yC, (float) xb, (float) yb);
-        mTmpPath.moveTo((float) xc, (float) yc);
-        mTmpPath.quadTo((float) xC, (float) yC, (float) xd, (float) yd);
+        mTmpPath.lineTo((float) xd, (float) yd);
+        mTmpPath.quadTo((float) xC, (float) yC, (float) xc, (float) yc);
+        mTmpPath.lineTo((float) xa, (float) ya);
+
         canvas.drawPath(mTmpPath, paint);
 
+    }
+
+    private RectF makeRect(PointF center, float r) {
+        return new RectF(center.x - r, center.y - r, center.x + r, center.y + r);
+    }
+
+    private float[] computeAngle(PointF start, PointF end, PointF center, float r) {
+        double a = Math.asin((start.y - center.y) / r);
+        double b = Math.asin((end.y - center.y) / r);
+        double from = a;
+        double sweep = b - a;
+        return new float[]{(float) from, (float) sweep};
     }
 
 }
