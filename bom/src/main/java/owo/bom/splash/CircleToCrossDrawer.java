@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PointF;
 
-import owo.bom.bezier.CircleBezierDrawer;
+import owo.bom.drawer.CircleBezierDrawer;
 
 /**
  * Created by wangli on 9/17/16.

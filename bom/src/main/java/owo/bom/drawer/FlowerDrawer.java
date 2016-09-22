@@ -1,9 +1,10 @@
-package owo.bom.splash;
+package owo.bom.drawer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.PointF;
 
+import owo.bom.splash.BaseDrawer;
 import owo.bom.splash.Drawer;
 
 /**

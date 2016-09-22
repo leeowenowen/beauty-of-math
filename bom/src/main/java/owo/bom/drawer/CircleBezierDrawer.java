@@ -1,4 +1,4 @@
-package owo.bom.bezier;
+package owo.bom.drawer;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
