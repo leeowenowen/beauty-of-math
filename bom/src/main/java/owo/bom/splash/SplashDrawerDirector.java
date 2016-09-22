@@ -3,8 +3,13 @@ package owo.bom.splash;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PointF;
 
+import java.util.Arrays;
+
+import owo.bom.drawer.AnyBezierDrawer;
 import owo.bom.drawer.FlowerDrawer;
 
 /**
@@ -55,15 +60,33 @@ public class SplashDrawerDirector extends DrawDirector {
 //                        .setDuration(5000);
 //            }
 //        });
-        addSection(new AnimatedDrawerSection(new FlowerDrawer(center)) {
+//        addSection(new AnimatedDrawerSection(new FlowerDrawer(center)) {
+//            @Override
+//            protected ValueAnimator createAnimator(Drawer drawer) {
+//                return ObjectAnimator.ofPropertyValuesHolder(drawer,
+//                        PropertyValuesHolder.ofFloat("rOut", 100, 600),
+//                        PropertyValuesHolder.ofInt("n", 2, 100),
+//                        PropertyValuesHolder.ofFloat("rIn", 50, 300)
+//                )
+//                        .setDuration(10000);
+//            }
+//        });
+        AnyBezierDrawer anyBezierDrawer = new AnyBezierDrawer();
+        anyBezierDrawer.setControlPoints(Arrays.asList(new Point(100, 600),
+                        new Point(0, 0),
+                        new Point(300, 100),
+                        new Point(500, 600),
+                        new Point(800, 100)
+                ),
+                Arrays.asList(Color.YELLOW, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA)
+        );
+        addSection(new AnimatedDrawerSection(anyBezierDrawer) {
             @Override
             protected ValueAnimator createAnimator(Drawer drawer) {
                 return ObjectAnimator.ofPropertyValuesHolder(drawer,
-                        PropertyValuesHolder.ofFloat("rOut", 100, 600),
-                        PropertyValuesHolder.ofInt("n", 2, 100),
-                        PropertyValuesHolder.ofFloat("rIn", 50, 300)
+                        PropertyValuesHolder.ofInt("i", 0, 5)
                 )
-                        .setDuration(10000);
+                        .setDuration(20000);
             }
         });
     }
