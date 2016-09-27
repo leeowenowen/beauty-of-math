@@ -14,3 +14,4 @@ color waterfall + color fireworks
 
 
 花边（分型，Ｎ次贝塞尔曲线的积分＋不同颜色)
+litter->big circle shape flower
