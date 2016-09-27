@@ -78,13 +78,13 @@ public class SplashDrawerDirector extends DrawDirector {
                         new Point(500, 600),
                         new Point(800, 100)
                 ),
-                Arrays.asList(Color.YELLOW, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA)
+                Arrays.asList(Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA), 100
         );
         addSection(new AnimatedDrawerSection(anyBezierDrawer) {
             @Override
             protected ValueAnimator createAnimator(Drawer drawer) {
                 return ObjectAnimator.ofPropertyValuesHolder(drawer,
-                        PropertyValuesHolder.ofInt("i", 0, 5)
+                        PropertyValuesHolder.ofInt("i", 0, 100)
                 )
                         .setDuration(20000);
             }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,23 +32,20 @@ public class AnyBezierDrawer extends BaseDrawer {
         this.i = i;
     }
 
-    public void setControlPoints(List<Point> points, List<Integer> colors) {
+    public void setControlPoints(List<Point> points, List<Integer> colors, int n) {
         controlPoints = points;
         this.colors = colors;
-        n = controlPoints.size();
+        this.n = n;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        //  for (int k = 0; k < i; k++)
-        int k = i;
-        {
-            Point p = compute(canvas, controlPoints, k, n);
-            drawPoint(canvas, p.x, p.y, 10, colors.get(0));
-        }
+        Point p = compute(canvas, controlPoints, i, n);
+        drawPoint(canvas, p.x, p.y, 10, colors.get(0));
     }
 
     private void drawPoint(Canvas canvas, int x, int y, int r, int color) {
+       // canvas.drawColor(Color.BLACK);
         int old = mPaint.getColor();
         mPaint.setColor(color);
         canvas.drawCircle(x, y, r, mPaint);
@@ -56,8 +54,8 @@ public class AnyBezierDrawer extends BaseDrawer {
 
     public Point compute(Canvas canvas, List<Point> controlPoints, int k, int n) {
         List<Point> tmpPoints = controlPoints;
-        while (tmpPoints.size() > 2) {
-            drawPoints(canvas, tmpPoints, colors.get(tmpPoints.size() - 1));
+        while (tmpPoints.size() > 1) {
+            drawPoints(canvas, tmpPoints, colors.get(controlPoints.size() - tmpPoints.size()));
             List<Point> points = new ArrayList<>();
             for (int j = 0; j < tmpPoints.size() - 1; j++) {
                 Point start = tmpPoints.get(j);
@@ -66,7 +64,7 @@ public class AnyBezierDrawer extends BaseDrawer {
             }
             tmpPoints = points;
         }
-        return computePoint(tmpPoints.get(0), tmpPoints.get(1), k, n);
+        return tmpPoints.get(0);
 
     }
 
@@ -82,6 +80,7 @@ public class AnyBezierDrawer extends BaseDrawer {
     public void drawPoints(Canvas canvas, List<Point> points, int color) {
         int old = mPaint.getColor();
         mPaint.setColor(color);
+        Log.d("xxx", " " + old + " " + color);
         path.reset();
         Iterator<Point> iterator = points.iterator();
         Point next = iterator.next();
