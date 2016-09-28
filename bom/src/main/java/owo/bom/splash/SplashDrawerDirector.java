@@ -10,7 +10,9 @@ import android.graphics.PointF;
 import java.util.Arrays;
 
 import owo.bom.drawer.AnyBezierDrawer;
+import owo.bom.drawer.Flower2Drawer;
 import owo.bom.drawer.FlowerDrawer;
+import owo.bom.drawer.WaterDrawer;
 
 /**
  * Created by wangli on 9/19/16.
@@ -72,21 +74,64 @@ public class SplashDrawerDirector extends DrawDirector {
 //            }
 //        });
         AnyBezierDrawer anyBezierDrawer = new AnyBezierDrawer();
-        anyBezierDrawer.setControlPoints(Arrays.asList(new Point(100, 600),
-                        new Point(0, 0),
-                        new Point(300, 100),
-                        new Point(500, 600),
-                        new Point(800, 100)
+        anyBezierDrawer.setControlPoints(Arrays.asList(new Point(0, 0),
+                        new Point(200, 50),
+                        new Point(0, 100),
+                        new Point(200, 150),
+                        new Point(0, 200),
+                        new Point(200, 250),
+                        new Point(0, 300),
+                        new Point(200, 350),
+                        new Point(0, 400),
+                        new Point(200, 450),
+                        new Point(0, 500)
                 ),
-                Arrays.asList(Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA), 100
+                Arrays.asList(Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA), 200
         );
-        addSection(new AnimatedDrawerSection(anyBezierDrawer) {
+        anyBezierDrawer.setControlPoints(Arrays.asList(new Point(0, 0),
+                        new Point(300, 300),
+                        new Point(0, 300),
+                        new Point(0, 600),
+                        new Point(300, 300),
+                        new Point(300, 600),
+                        new Point(600, 600),
+                        new Point(300, 300),
+                        new Point(600, 300),
+                        new Point(600, 0),
+                        new Point(300, 300),
+                        new Point(300, 0),
+                        new Point(0, 0)
+                ),
+                Arrays.asList(Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.RED, Color.BLUE, Color.GREEN, Color.CYAN, Color.MAGENTA, Color.RED), 200
+        );
+//        addSection(new AnimatedDrawerSection(anyBezierDrawer) {
+//            @Override
+//            protected ValueAnimator createAnimator(Drawer drawer) {
+//                return ObjectAnimator.ofPropertyValuesHolder(drawer,
+//                        PropertyValuesHolder.ofInt("i", 0, 200)
+//                )
+//                        .setDuration(20000);
+//            }
+//        });
+//        addSection(new AnimatedDrawerSection(new Flower2Drawer(center)) {
+//            @Override
+//            protected ValueAnimator createAnimator(Drawer drawer) {
+//                return ObjectAnimator.ofPropertyValuesHolder(drawer,
+//                        PropertyValuesHolder.ofFloat("rOut", 100, 600),
+//                        PropertyValuesHolder.ofInt("n", 2, 100),
+//                        PropertyValuesHolder.ofFloat("rIn", 0, 0)
+//                )
+//                        .setDuration(10000);
+//            }
+//        });
+
+        addSection(new AnimatedDrawerSection(new WaterDrawer()) {
             @Override
             protected ValueAnimator createAnimator(Drawer drawer) {
                 return ObjectAnimator.ofPropertyValuesHolder(drawer,
-                        PropertyValuesHolder.ofInt("i", 0, 100)
+                        PropertyValuesHolder.ofInt("xOffset", 0, 600)
                 )
-                        .setDuration(20000);
+                        .setDuration(10000);
             }
         });
     }
