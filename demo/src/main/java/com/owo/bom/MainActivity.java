@@ -1,7 +1,6 @@
 package com.owo.bom;
 
 import android.animation.ValueAnimator;
-import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import owo.bom.GrassView;
 import owo.bom.drawable.BaseDrawable;
 import owo.bom.splash.SplashDrawerDirector;
 import owo.bom.util.UIUtil;
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         director.start();
-
         setContentView(view);
 
     }
