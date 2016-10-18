@@ -1,7 +1,6 @@
 package owo.bom.drawer;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -12,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import owo.bom.splash.BaseDrawer;
-import owo.bom.util.RandomUtil;
+import com.owo.base.util.RandomUtil;
 
 /**
  * Created by wangli on 16-9-23.

@@ -1,1 +1,1 @@
-include ':demo', ':bom'
+include ':demo', ':bom', ':base'

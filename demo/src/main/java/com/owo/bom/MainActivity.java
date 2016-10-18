@@ -12,8 +12,8 @@ import android.view.WindowManager;
 
 import owo.bom.drawable.BaseDrawable;
 import owo.bom.splash.SplashDrawerDirector;
-import owo.bom.util.UIUtil;
-import owo.bom.util.WindowUtil;
+import com.owo.base.util.UIUtil;
+import com.owo.base.util.WindowUtil;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -21,31 +21,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow()
-                .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getSupportActionBar().hide();
         //-------------------------------------------------
-        final View view = new View(this);
-        PointF center = new PointF();
-        DisplayMetrics dm = WindowUtil.getScreenSize(this);
-        center.x = dm.widthPixels / 2;
-        center.y = dm.heightPixels / 2;
-        final SplashDrawerDirector director = new SplashDrawerDirector(center);
-        UIUtil.setBackgroundDrawable(view, new BaseDrawable() {
-            @Override
-            public void draw(Canvas canvas) {
-                director.draw(canvas);
-            }
-        });
-        director.setAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                view.invalidate();
-            }
-        });
-        director.start();
-        setContentView(view);
+        setContentView(R.layout.activity_main);
+//        final View view = new View(this);
+//        PointF center = new PointF();
+//        DisplayMetrics dm = WindowUtil.getScreenSize(this);
+//        center.x = dm.widthPixels / 2;
+//        center.y = dm.heightPixels / 2;
+//        final SplashDrawerDirector director = new SplashDrawerDirector(center);
+//        UIUtil.setBackgroundDrawable(view, new BaseDrawable() {
+//            @Override
+//            public void draw(Canvas canvas) {
+//                director.draw(canvas);
+//            }
+//        });
+//        director.setAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                view.invalidate();
+//            }
+//        });
+//        director.start();
+//        setContentView(view);
 
     }
 

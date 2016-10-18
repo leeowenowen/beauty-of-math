@@ -9,8 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.owo.bom.MainActivity">
 
-    <TextView
+    <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/gridView"
+        android:columnWidth="@dimen/grid_view_column_width"
+        android:drawSelectorOnTop="true"
+        android:horizontalSpacing="@dimen/grid_h_space"
+        android:numColumns="@integer/grid_num_column"
+        android:stretchMode="spacingWidth"
+        android:textAlignment="center"
+        android:verticalSpacing="@dimen/grid_v_space" />
+
 </RelativeLayout>

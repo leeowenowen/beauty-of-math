@@ -1,7 +1,6 @@
-package owo.bom.util;
+package com.owo.base.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.DisplayMetrics;
 
 /**

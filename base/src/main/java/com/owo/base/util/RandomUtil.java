@@ -1,4 +1,4 @@
-package owo.bom.util;
+package com.owo.base.util;
 
 import android.app.Activity;
 import android.graphics.Color;
