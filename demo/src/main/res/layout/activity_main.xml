@@ -9,16 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".main.MainActivity">
 
-    <GridView
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gridView"
-        android:columnWidth="@dimen/grid_view_column_width"
-        android:drawSelectorOnTop="true"
-        android:horizontalSpacing="@dimen/grid_h_space"
-        android:numColumns="@integer/grid_num_column"
-        android:stretchMode="spacingWidth"
-        android:textAlignment="center"
-        android:verticalSpacing="@dimen/grid_v_space" />
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

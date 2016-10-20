@@ -1,5 +1,7 @@
 package com.owo.bom.main;
 
+import android.view.View;
+
 import owo.bom.splash.Drawer;
 
 /**
@@ -8,12 +10,12 @@ import owo.bom.splash.Drawer;
 public class MainDataItem {
     private String title;
     private String description;
-    private Drawer coverDrawer;
+    private View cover;
 
-    public MainDataItem(String title, String description, Drawer coverDrawer) {
+    public MainDataItem(String title, String description, View cover) {
         this.title = title;
         this.description = description;
-        this.coverDrawer = coverDrawer;
+        this.cover = cover;
     }
 
     public String getTitle() {
@@ -32,11 +34,11 @@ public class MainDataItem {
         this.description = description;
     }
 
-    public Drawer getCoverDrawer() {
-        return coverDrawer;
+    public View getCover() {
+        return cover;
     }
 
-    public void setCoverDrawer(Drawer coverDrawer) {
-        this.coverDrawer = coverDrawer;
+    public void setCover(View cover) {
+        this.cover = cover;
     }
 }

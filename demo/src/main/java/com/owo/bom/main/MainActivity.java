@@ -3,13 +3,15 @@ package com.owo.bom.main;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import com.owo.bom.R;
 
+import owo.bom.SampleBezierViewLevel1;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private GridView mMainView;
-    private MainAdapter mMainAdapter;
+    private ListView mMainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------------------------
         setContentView(R.layout.activity_main);
 
-        mMainView = (GridView) findViewById(R.id.gridView);
+        mMainView = (ListView) findViewById(R.id.listView);
         MainAdapter adapter = new MainAdapter(new MainData(this));
         mMainView.setAdapter(adapter);
 //        final View view = new View(this);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //        director.start();
 //        setContentView(view);
-
+    //    setContentView(new SampleBezierViewLevel1(this));
     }
 
 }

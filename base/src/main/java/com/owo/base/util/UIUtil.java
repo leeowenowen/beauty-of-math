@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by wangli on 9/15/16.
@@ -15,6 +16,14 @@ public class UIUtil {
         } else {
             v.setBackgroundDrawable(d);
         }
+    }
+
+    public static void setMargin(View v, int left, int top, int right, int bottom) {
+        ViewGroup.MarginLayoutParams lParams = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+        lParams.leftMargin = left;
+        lParams.topMargin = top;
+        lParams.rightMargin = right;
+        lParams.bottomMargin = bottom;
     }
 
     public static int dip2px(Context context, float dpValue) {

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="@dimen/grid_item_width"
-        android:layout_height="@dimen/grid_item_height"
+    <FrameLayout
         android:id="@+id/cover"
-        android:layout_gravity="center_horizontal" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/grid_item_height"
+        android:background="#ff0000ff" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/title"
-        android:gravity="left" />
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="left" />
+
+    <TextView
         android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="left" />
 </LinearLayout>

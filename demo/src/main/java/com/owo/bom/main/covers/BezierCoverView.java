@@ -1,19 +1,19 @@
-package owo.bom;
+package com.owo.bom.main.covers;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.view.DragEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Gravity;
 import android.widget.FrameLayout;
 
+import owo.bom.CircleMarkView;
 
-public class SampleBezierView extends FrameLayout {
+/**
+ * Created by wangli on 16-10-20.
+ */
+public class BezierCoverView extends FrameLayout {
     private static final String TAG = "SampleBezierView";
     private static final int CIRCLE_VIEW_WH = 100;
     private CircleMarkView mStartView;
@@ -21,7 +21,7 @@ public class SampleBezierView extends FrameLayout {
     private CircleMarkView mControl1View;
     private CircleMarkView mControl2View;
 
-    public SampleBezierView(Context context) {
+    public BezierCoverView(Context context) {
         super(context);
         setClipChildren(false);
         mStartView = new CircleMarkView(context, "S");
@@ -34,10 +34,22 @@ public class SampleBezierView extends FrameLayout {
         mControl1View.setOnMarkChangeListener(onMarkChangedListener);
         mControl2View.setOnMarkChangeListener(onMarkChangedListener);
 
-        addView(mStartView, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
-        addView(mEndView, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
-        addView(mControl1View, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
-        addView(mControl2View, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
+        FrameLayout.LayoutParams slp = new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH, Gravity.LEFT | Gravity.TOP);
+        slp.leftMargin = 20;
+        slp.topMargin = 20;
+        addView(mStartView, slp);
+        FrameLayout.LayoutParams elp = new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH, Gravity.RIGHT | Gravity.BOTTOM);
+        elp.rightMargin = 20;
+        elp.bottomMargin = 20;
+        addView(mEndView, elp);
+        FrameLayout.LayoutParams c1lp = new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH, Gravity.LEFT | Gravity.BOTTOM);
+        c1lp.leftMargin = 150;
+        c1lp.bottomMargin = 50;
+        addView(mControl1View, c1lp);
+        FrameLayout.LayoutParams c2lp = new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH, Gravity.RIGHT | Gravity.TOP);
+        c2lp.rightMargin = 150;
+        c2lp.topMargin = 50;
+        addView(mControl2View, c2lp);
         setBackgroundColor(Color.YELLOW);
     }
 
@@ -66,21 +78,5 @@ public class SampleBezierView extends FrameLayout {
         path.moveTo(mStartView.centerX(), mStartView.centerY());
         path.cubicTo(mControl1View.centerX(), mControl1View.centerY(), mControl2View.centerX(), mControl2View.centerY(), mEndView.centerX(), mEndView.centerY());
         canvas.drawPath(path, paint);
-    }
-
-    public CircleMarkView start() {
-        return mStartView;
-    }
-
-    public CircleMarkView end() {
-        return mEndView;
-    }
-
-    public CircleMarkView controlPoint1() {
-        return mControl1View;
-    }
-
-    public CircleMarkView controlPoint2() {
-        return mControl2View;
     }
 }
