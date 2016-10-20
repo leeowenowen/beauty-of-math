@@ -6,13 +6,17 @@
     <ImageView
         android:layout_width="@dimen/grid_item_width"
         android:layout_height="@dimen/grid_item_height"
-        android:id="@+id/imageView"
+        android:id="@+id/cover"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView"
-        android:gravity="center" />
+        android:id="@+id/title"
+        android:gravity="left" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/desc"
+        android:gravity="left" />
 </LinearLayout>

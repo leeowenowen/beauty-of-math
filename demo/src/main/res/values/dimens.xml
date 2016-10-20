@@ -2,9 +2,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="grid_view_column_width">400dp</dimen>
+    <dimen name="grid_view_column_width">200dp</dimen>
     <dimen name="grid_h_space">2dp</dimen>
     <dimen name="grid_v_space">2dp</dimen>
-    <dimen name="grid_item_height">400</dimen>
-    <dimen name="grid_item_width">400</dimen>
+    <dimen name="grid_item_height">200dp</dimen>
+    <dimen name="grid_item_width">200dp</dimen>
 </resources>

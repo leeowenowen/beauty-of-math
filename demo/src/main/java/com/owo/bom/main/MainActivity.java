@@ -1,22 +1,15 @@
-package com.owo.bom;
+package com.owo.bom.main;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.GridView;
 
-import owo.bom.drawable.BaseDrawable;
-import owo.bom.splash.SplashDrawerDirector;
-import com.owo.base.util.UIUtil;
-import com.owo.base.util.WindowUtil;
+import com.owo.bom.R;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private GridView mMainView;
+    private MainAdapter mMainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
         //-------------------------------------------------
         setContentView(R.layout.activity_main);
+
+        mMainView = (GridView) findViewById(R.id.gridView);
+        MainAdapter adapter = new MainAdapter(new MainData(this));
+        mMainView.setAdapter(adapter);
 //        final View view = new View(this);
 //        PointF center = new PointF();
 //        DisplayMetrics dm = WindowUtil.getScreenSize(this);
