@@ -83,8 +83,8 @@ public class CircleMarkView extends TextView {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        paint.setColor(Color.RED);
-        paint.setTextSize(40);
+        paint.setColor(Color.YELLOW);
+        //paint.setTextSize(40);
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, paint);
         super.onDraw(canvas);
     }

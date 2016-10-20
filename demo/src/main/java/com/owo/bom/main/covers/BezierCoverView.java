@@ -3,8 +3,10 @@ package com.owo.bom.main.covers;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 
@@ -50,7 +52,6 @@ public class BezierCoverView extends FrameLayout {
         c2lp.rightMargin = 150;
         c2lp.topMargin = 50;
         addView(mControl2View, c2lp);
-        setBackgroundColor(Color.YELLOW);
     }
 
     private CircleMarkView.onMarkChangedListener onMarkChangedListener = new CircleMarkView.onMarkChangedListener() {
@@ -64,19 +65,22 @@ public class BezierCoverView extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
         paint.setColor(Color.YELLOW);
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         paint.setStrokeWidth(5);
+        PathEffect pathEffect = new DashPathEffect(new float[]{5, 5, 5, 5}, 1);
+        paint.setPathEffect(pathEffect);
         path.reset();
         path.moveTo(mControl1View.centerX(), mControl1View.centerY());
         path.lineTo(mControl2View.centerX(), mControl2View.centerY());
         canvas.drawPath(path, paint);
         path.reset();
         paint.setColor(Color.GREEN);
+        paint.setPathEffect(null);
         path.moveTo(mStartView.centerX(), mStartView.centerY());
         path.cubicTo(mControl1View.centerX(), mControl1View.centerY(), mControl2View.centerX(), mControl2View.centerY(), mEndView.centerX(), mEndView.centerY());
         canvas.drawPath(path, paint);
+        super.dispatchDraw(canvas);
     }
 }

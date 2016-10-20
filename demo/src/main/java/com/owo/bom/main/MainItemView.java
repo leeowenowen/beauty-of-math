@@ -31,7 +31,6 @@ public class MainItemView extends LinearLayout {
         mCover = (FrameLayout) findViewById(R.id.cover);
         mTitle = (TextView) findViewById(R.id.title);
         mDescription = (TextView) findViewById(R.id.desc);
-        setBackgroundColor(Color.RED);
     }
 
     public void update(MainDataItem item) {
