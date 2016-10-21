@@ -1,13 +1,12 @@
 package com.owo.bom.bezier;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
 import com.owo.bom.R;
-import com.owo.bom.base.ListDataItem;
+import com.owo.bom.base.DataItem;
 import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
@@ -27,25 +26,25 @@ public class BezierActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
     }
 
-    private List<ListDataItem> setupListData() {
-        List<ListDataItem> list = new ArrayList<>();
+    private List<DataItem> setupListData() {
+        List<DataItem> list = new ArrayList<>();
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+            list.add(new DataItem(getResources().getString(R.string.main_title_bezier), //
                     getResources().getString(R.string.main_desc_bezier),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+            list.add(new DataItem(getResources().getString(R.string.main_title_bezier), //
                     getResources().getString(R.string.main_desc_bezier),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+            list.add(new DataItem(getResources().getString(R.string.main_title_bezier), //
                     getResources().getString(R.string.main_desc_bezier),//
                     sbv
             ));

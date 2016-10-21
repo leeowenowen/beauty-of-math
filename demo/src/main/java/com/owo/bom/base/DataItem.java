@@ -9,12 +9,12 @@ import java.util.Map;
 /**
  * Created by wangli on 16-10-21.
  */
-public class ListDataItem {
+public class DataItem {
     private String title;
     private String description;
     private View cover;
 
-    public ListDataItem(String title, String description, View cover) {
+    public DataItem(String title, String description, View cover) {
         this.title = title;
         this.description = description;
         this.cover = cover;

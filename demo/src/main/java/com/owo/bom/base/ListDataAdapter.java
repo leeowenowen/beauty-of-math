@@ -10,9 +10,9 @@ import java.util.List;
  * Created by wangli on 16-10-20.
  */
 public class ListDataAdapter extends BaseAdapter {
-    private List<ListDataItem> mData;
+    private List<DataItem> mData;
 
-    public ListDataAdapter(List<ListDataItem> mainData) {
+    public ListDataAdapter(List<DataItem> mainData) {
         mData = mainData;
     }
 
@@ -33,11 +33,11 @@ public class ListDataAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ListItemView view = null;
+        ItemView view = null;
         if (convertView == null) {
-            view = new ListItemView(parent.getContext());
+            view = new ItemView(parent.getContext());
         } else {
-            view = (ListItemView) convertView;
+            view = (ItemView) convertView;
         }
         view.update(mData.get(position));
         return view;
