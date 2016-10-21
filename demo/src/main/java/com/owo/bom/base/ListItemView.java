@@ -1,31 +1,23 @@
-package com.owo.bom.main;
+package com.owo.bom.base;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.owo.base.util.ViewUtil;
 import com.owo.bom.R;
 import com.owo.bom.main.covers.BezierCoverView;
-
-import org.w3c.dom.Text;
-
-import owo.bom.SampleBezierView;
 
 /**
  * Created by wangli on 16-10-20.
  */
-public class MainItemView extends LinearLayout {
+public class ListItemView extends LinearLayout {
     private FrameLayout mCover;
     private TextView mTitle;
     private TextView mDescription;
 
-    public MainItemView(Context context) {
+    public ListItemView(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.grid_item, this, true);
         mCover = (FrameLayout) findViewById(R.id.cover);
@@ -33,7 +25,7 @@ public class MainItemView extends LinearLayout {
         mDescription = (TextView) findViewById(R.id.desc);
     }
 
-    public void update(MainDataItem item) {
+    public void update(ListDataItem item) {
         mTitle.setText(item.getTitle());
         mDescription.setText(item.getDescription());
         mCover.removeAllViews();

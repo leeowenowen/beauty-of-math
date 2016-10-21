@@ -11,7 +11,14 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.owo.bom.R;
+import com.owo.bom.base.*;
+import com.owo.bom.base.ListDataItem;
 import com.owo.bom.bezier.BezierActivity;
+import com.owo.bom.main.covers.BezierCoverView;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import owo.bom.SampleBezierViewLevel1;
 
@@ -23,7 +30,7 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        MainAdapter adapter = new MainAdapter(new MainData(this));
+        ListDataAdapter adapter = new ListDataAdapter(setupListData());
         setListAdapter(adapter);
 //        final View view = new View(this);
 //        PointF center = new PointF();
@@ -45,6 +52,32 @@ public class MainActivity extends ListActivity {
 //        director.start();
 //        setContentView(view);
         //    setContentView(new SampleBezierViewLevel1(this));
+    }
+
+    private List<ListDataItem> setupListData() {
+        List<ListDataItem> list = new ArrayList<>();
+        {
+            BezierCoverView sbv = new BezierCoverView(this);
+            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+                    getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
+        {
+            BezierCoverView sbv = new BezierCoverView(this);
+            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+                    getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
+        {
+            BezierCoverView sbv = new BezierCoverView(this);
+            list.add(new ListDataItem(getResources().getString(R.string.main_title_bezier), //
+                    getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
+        return list;
     }
 
     @Override

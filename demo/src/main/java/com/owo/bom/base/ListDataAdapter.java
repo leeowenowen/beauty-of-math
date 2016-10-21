@@ -1,23 +1,24 @@
-package com.owo.bom.main;
+package com.owo.bom.base;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
 /**
  * Created by wangli on 16-10-20.
  */
-public class MainAdapter extends BaseAdapter {
-    private MainData mMainData;
+public class ListDataAdapter extends BaseAdapter {
+    private List<ListDataItem> mData;
 
-    public MainAdapter(MainData mainData) {
-        mMainData = mainData;
+    public ListDataAdapter(List<ListDataItem> mainData) {
+        mData = mainData;
     }
 
     @Override
     public int getCount() {
-        return mMainData == null ? 0 : mMainData.size();
+        return mData == null ? 0 : mData.size();
     }
 
     @Override
@@ -32,13 +33,13 @@ public class MainAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MainItemView view = null;
+        ListItemView view = null;
         if (convertView == null) {
-            view = new MainItemView(parent.getContext());
+            view = new ListItemView(parent.getContext());
         } else {
-            view = (MainItemView) convertView;
+            view = (ListItemView) convertView;
         }
-        view.update(mMainData.get(position));
+        view.update(mData.get(position));
         return view;
     }
 }
