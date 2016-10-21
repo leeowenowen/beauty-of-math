@@ -59,6 +59,7 @@ public class CircleMarkView extends TextView {
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                getParent().requestDisallowInterceptTouchEvent(true);
                 origX = x;
                 origY = y;
                 Log.d(TAG, "ACTION_DOWN");
@@ -71,8 +72,10 @@ public class CircleMarkView extends TextView {
                 Log.d(TAG, "ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
+                getParent().requestDisallowInterceptTouchEvent(false);
                 Log.d(TAG, "ACTION_UP");
             case MotionEvent.ACTION_OUTSIDE:
+                getParent().requestDisallowInterceptTouchEvent(false);
                 Log.d(TAG, "ACTION_OUTSIDE");
                 break;
         }

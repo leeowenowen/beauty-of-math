@@ -24,7 +24,6 @@ import owo.bom.SampleBezierViewLevel1;
 
 public class MainActivity extends ListActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private ListView mMainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
