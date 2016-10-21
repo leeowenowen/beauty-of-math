@@ -2,4 +2,5 @@
     <string name="app_name">BeautyOfMath</string>
     <string name="main_title_bezier">Bezier</string>
     <string name="main_desc_bezier">Bezier</string>
+    <string name="title_activity_blank">BlankActivity</string>
 </resources>

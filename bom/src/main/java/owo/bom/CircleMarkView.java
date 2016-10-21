@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.TextView;
  * Created by wangli on 16-9-11.
  */
 public class CircleMarkView extends TextView {
+    private static final String TAG = CircleMarkView.class.getSimpleName();
+
     public static interface onMarkChangedListener {
         void onMarkChanged();
     }
@@ -58,14 +61,19 @@ public class CircleMarkView extends TextView {
             case MotionEvent.ACTION_DOWN:
                 origX = x;
                 origY = y;
+                Log.d(TAG, "ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
                 doMove(x, y);
                 if (markChangedListener != null) {
                     markChangedListener.onMarkChanged();
                 }
+                Log.d(TAG, "ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
+                Log.d(TAG, "ACTION_UP");
+            case MotionEvent.ACTION_OUTSIDE:
+                Log.d(TAG, "ACTION_OUTSIDE");
                 break;
         }
         return true;
@@ -73,9 +81,15 @@ public class CircleMarkView extends TextView {
 
     private void doMove(float x, float y) {
         ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) getLayoutParams();
-        mlp.leftMargin = (int) (getLeft() + x - origX);
-        mlp.topMargin = (int) (getTop() + y - origY);
+        int newLeftMargin = (int) (getLeft() + x - origX);
+        int newTopMargin = (int) (getTop() + y - origY);
+        if (newLeftMargin - mlp.leftMargin < 2 && newTopMargin - mlp.topMargin < 2) {
+            return;
+        }
+        mlp.leftMargin = newLeftMargin;
+        mlp.topMargin = newTopMargin;
         setLayoutParams(mlp);
+        postInvalidate();
     }
 
     private Paint paint = new Paint();

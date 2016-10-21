@@ -17,10 +17,27 @@ import owo.bom.SampleBezierView;
  */
 public class MainData extends ArrayList<MainDataItem> {
     public MainData(Context context) {
-        BezierCoverView sbv = new BezierCoverView(context);
-        add(new MainDataItem(context.getResources().getString(R.string.main_title_bezier), //
-                context.getResources().getString(R.string.main_desc_bezier),//
-                sbv
-        ));
+        {
+            BezierCoverView sbv = new BezierCoverView(context);
+            add(new MainDataItem(context.getResources().getString(R.string.main_title_bezier), //
+                    context.getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
+        {
+            BezierCoverView sbv = new BezierCoverView(context);
+            add(new MainDataItem(context.getResources().getString(R.string.main_title_bezier), //
+                    context.getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
+        {
+            BezierCoverView sbv = new BezierCoverView(context);
+            add(new MainDataItem(context.getResources().getString(R.string.main_title_bezier), //
+                    context.getResources().getString(R.string.main_desc_bezier),//
+                    sbv
+            ));
+        }
     }
 }
+

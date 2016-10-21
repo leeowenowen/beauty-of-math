@@ -14,6 +14,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".bezier.BezierActivity"
+            android:label="@string/title_activity_blank"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 
@@ -16,7 +17,7 @@ import owo.bom.CircleMarkView;
  * Created by wangli on 16-10-20.
  */
 public class BezierCoverView extends FrameLayout {
-    private static final String TAG = "SampleBezierView";
+    private static final String TAG = BezierCoverView.class.getSimpleName();
     private static final int CIRCLE_VIEW_WH = 100;
     private CircleMarkView mStartView;
     private CircleMarkView mEndView;
@@ -57,7 +58,8 @@ public class BezierCoverView extends FrameLayout {
     private CircleMarkView.onMarkChangedListener onMarkChangedListener = new CircleMarkView.onMarkChangedListener() {
         @Override
         public void onMarkChanged() {
-            invalidate();
+            Log.d(TAG, "onMarkChangedListener");
+            postInvalidate();
         }
     };
     private Path path = new Path();
