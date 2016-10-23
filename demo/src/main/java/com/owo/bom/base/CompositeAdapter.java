@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by wangli on 16-10-21.
  */
-public abstract class CompositeAdapter extends BaseAdapter {
+public class CompositeAdapter extends BaseAdapter {
     private List<BaseAdapter> mChildren = new ArrayList<>();
 
     public void addChild(BaseAdapter child) {
@@ -49,6 +49,21 @@ public abstract class CompositeAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        int count = 0;
+        int preCount = 0;
+        for (BaseAdapter baseAdapter : mChildren) {
+            preCount = count;
+            count += baseAdapter.getCount();
+            if (position >= preCount && position < count) {
+                int curpos = position - preCount;
+                return baseAdapter.getView(curpos, convertView, parent);
+            }
+        }
+        return null;
     }
 
     protected void beforeAddAdapter(BaseAdapter adapter) {

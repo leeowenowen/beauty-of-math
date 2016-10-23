@@ -22,6 +22,10 @@ public class GroupDataItem {
         return mItems;
     }
 
+    public void setItems(List<DataItem> items) {
+        mItems = items;
+    }
+
     public void addItem(DataItem item) {
         mItems.add(item);
     }

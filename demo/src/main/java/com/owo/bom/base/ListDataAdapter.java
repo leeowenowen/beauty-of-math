@@ -11,6 +11,12 @@ import java.util.List;
  */
 public class ListDataAdapter extends BaseAdapter {
     private List<DataItem> mData;
+    private int mItemViewType;
+
+    public ListDataAdapter itemViewType(int itemViewType) {
+        mItemViewType = itemViewType;
+        return this;
+    }
 
     public ListDataAdapter(List<DataItem> mainData) {
         mData = mainData;
@@ -23,7 +29,7 @@ public class ListDataAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mData.get(position);
     }
 
     @Override
@@ -41,5 +47,10 @@ public class ListDataAdapter extends BaseAdapter {
         }
         view.update(mData.get(position));
         return view;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mItemViewType;
     }
 }

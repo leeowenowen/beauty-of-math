@@ -8,7 +8,7 @@
     <string name="bezier_level_2">Level 2</string>
     <string name="bezier_level_3">Level 3</string>
     <string name="bezier_level_n">Level N</string>
-    <string name="bezier_experiment">Experiment</string>
+    <string name="bezier_advance">Advance</string>
     <string name="bezier_pageturn">Page Turn</string>
     <string name="bezier_waterflow">Water Flow</string>
     <string name="bezier_drag">Drag</string>
