@@ -54,12 +54,12 @@ public class TitleDataAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = null;
         if (mUseConvertView && convertView != null) {
+            view = (TextView) convertView;
+        } else {
             view = new TextView(parent.getContext());
             AbsListView.LayoutParams lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.getContext().getResources().getDimensionPixelOffset(R.dimen.group_title_height));
             view.setLayoutParams(lp);
-            view.setBackgroundColor(Color.BLUE);
-        } else {
-            view = (TextView) convertView;
+            view.setBackgroundColor(Color.RED);
         }
         view.setText(mTitle);
         return view;
