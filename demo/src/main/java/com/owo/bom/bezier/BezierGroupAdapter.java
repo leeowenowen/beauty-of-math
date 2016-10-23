@@ -19,7 +19,7 @@ public class BezierGroupAdapter extends CompositeAdapter {
     public static final int ITEM_VIEW_TYPE_ITEM = 2;
 
     public void addGroup(GroupDataItem group) {
-        addChild(new TitleDataAdapter(group.getTitle(), ITEM_VIEW_TYPE_TITLE));
-        addChild(new ListDataAdapter(group.getItems()).itemViewType(ITEM_VIEW_TYPE_ITEM));
+        addChild(new TitleDataAdapter(group.getTitle(), ITEM_VIEW_TYPE_TITLE, false));
+        addChild(new ListDataAdapter(group.getItems()).itemViewType(ITEM_VIEW_TYPE_ITEM).useConvertView(false));
     }
 }

@@ -12,9 +12,15 @@ import java.util.List;
 public class ListDataAdapter extends BaseAdapter {
     private List<DataItem> mData;
     private int mItemViewType;
+    private boolean mUseConvertView = true;
 
     public ListDataAdapter itemViewType(int itemViewType) {
         mItemViewType = itemViewType;
+        return this;
+    }
+
+    public ListDataAdapter useConvertView(boolean flag) {
+        mUseConvertView = flag;
         return this;
     }
 
@@ -40,10 +46,10 @@ public class ListDataAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ItemView view = null;
-        if (convertView == null) {
-            view = new ItemView(parent.getContext());
-        } else {
+        if (mUseConvertView && convertView != null) {
             view = (ItemView) convertView;
+        } else {
+            view = new ItemView(parent.getContext());
         }
         view.update(mData.get(position));
         return view;

@@ -18,10 +18,16 @@ import org.w3c.dom.Text;
 public class TitleDataAdapter extends BaseAdapter {
     private final String mTitle;
     private final int mItemViewType;
+    private boolean mUseConvertView = true;
 
     public TitleDataAdapter(String title, int itemViewType) {
+        this(title, itemViewType, true);
+    }
+
+    public TitleDataAdapter(String title, int itemViewType, boolean useConvertView) {
         mTitle = title;
         mItemViewType = itemViewType;
+        mUseConvertView = useConvertView;
     }
 
     @Override
@@ -47,13 +53,13 @@ public class TitleDataAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = null;
-        if (convertView != null) {
-            view = (TextView) convertView;
-        } else {
+        if (mUseConvertView && convertView != null) {
             view = new TextView(parent.getContext());
             AbsListView.LayoutParams lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.getContext().getResources().getDimensionPixelOffset(R.dimen.group_title_height));
             view.setLayoutParams(lp);
             view.setBackgroundColor(Color.BLUE);
+        } else {
+            view = (TextView) convertView;
         }
         view.setText(mTitle);
         return view;
