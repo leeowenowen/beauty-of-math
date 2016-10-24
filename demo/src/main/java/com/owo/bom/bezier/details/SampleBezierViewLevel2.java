@@ -32,6 +32,7 @@ public class SampleBezierViewLevel2 extends FrameLayout {
         addView(mStartView, new LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
         addView(mEndView, new LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
         addView(mControlView, new LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
+        setBackgroundColor(Color.BLACK);
     }
 
     private CircleMarkView.onMarkChangedListener onMarkChangedListener = new CircleMarkView.onMarkChangedListener() {
@@ -45,7 +46,6 @@ public class SampleBezierViewLevel2 extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
         path.reset();
@@ -53,6 +53,6 @@ public class SampleBezierViewLevel2 extends FrameLayout {
         path.moveTo(mStartView.centerX(), mStartView.centerY());
         path.quadTo(mControlView.centerX(), mControlView.centerY(), mEndView.centerX(), mEndView.centerY());
         canvas.drawPath(path, paint);
-
+        super.dispatchDraw(canvas);
     }
 }
