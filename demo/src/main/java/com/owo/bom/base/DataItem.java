@@ -10,11 +10,17 @@ import java.util.Map;
  * Created by wangli on 16-10-21.
  */
 public class DataItem {
+    private String id;
     private String title;
     private String description;
     private View cover;
 
     public DataItem(String title, String description, View cover) {
+        this(null, title, description, cover);
+    }
+
+    public DataItem(String id, String title, String description, View cover) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.cover = cover;
@@ -52,5 +58,13 @@ public class DataItem {
 
     public void get(String key) {
         mData.get(key);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

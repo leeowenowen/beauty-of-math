@@ -2,7 +2,7 @@ package com.owo.bom;
 
 import android.app.Application;
 
-import owo.bom.UIHandler;
+import com.owo.base.util.UIHandler;
 
 /**
  * Created by wangli on 16-9-14.

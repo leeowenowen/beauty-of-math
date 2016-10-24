@@ -1,17 +1,12 @@
 package com.owo.bom;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import owo.bom.SampleBezierViewLevel1;
 
 public class SCActivity extends AppCompatActivity {
     private ImageView imageView;

@@ -1,6 +1,7 @@
 package com.owo.bom.bezier;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -8,6 +9,7 @@ import android.widget.ListView;
 import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.GroupDataItem;
+import com.owo.bom.bezier.details.SampleBezierActivity;
 import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
@@ -42,35 +44,42 @@ public class BezierActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+        int type = getListAdapter().getItemViewType(position);
+        if (BezierGroupAdapter.ITEM_VIEW_TYPE_TITLE == type) {
+            return;
+        }
+        DataItem item = (DataItem) getListAdapter().getItem(position);
+        Intent intent = new Intent(this, SampleBezierActivity.class);
+        intent.putExtra(BezierConstants.KEY_TYPE, item.getId());
+        startActivity(intent);
     }
 
     private List<DataItem> setupBasicListData() {
         List<DataItem> list = new ArrayList<>();
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_level_1), //
+            list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL1, getResources().getString(R.string.bezier_level_1), //
                     getResources().getString(R.string.bezier_level_1),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_level_2), //
+            list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL2, getResources().getString(R.string.bezier_level_2), //
                     getResources().getString(R.string.bezier_level_2),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_level_3), //
+            list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL3, getResources().getString(R.string.bezier_level_3), //
                     getResources().getString(R.string.bezier_level_3),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_level_n), //
+            list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVELN, getResources().getString(R.string.bezier_level_n), //
                     getResources().getString(R.string.bezier_level_n),//
                     sbv
             ));
@@ -82,28 +91,28 @@ public class BezierActivity extends ListActivity {
         List<DataItem> list = new ArrayList<>();
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_pageturn), //
+            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_FLOWER, getResources().getString(R.string.bezier_pageturn), //
                     getResources().getString(R.string.bezier_pageturn),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_waterflow), //
+            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_WATERFLOW, getResources().getString(R.string.bezier_waterflow), //
                     getResources().getString(R.string.bezier_waterflow),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_drag), //
+            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_DRAG, getResources().getString(R.string.bezier_drag), //
                     getResources().getString(R.string.bezier_drag),//
                     sbv
             ));
         }
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(getResources().getString(R.string.bezier_flower), //
+            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_FLOWER, getResources().getString(R.string.bezier_flower), //
                     getResources().getString(R.string.bezier_flower),//
                     sbv
             ));

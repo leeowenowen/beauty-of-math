@@ -1,4 +1,4 @@
-package owo.bom;
+package com.owo.bom.bezier.details;
 
 import android.content.ClipData;
 import android.content.Context;
@@ -12,16 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import owo.bom.CircleMarkView;
 
-public class SampleBezierView extends FrameLayout {
+
+public class SampleBezierViewLevel3 extends FrameLayout {
     private static final String TAG = "SampleBezierView";
-    private static final int CIRCLE_VIEW_WH = 100;
+    private static final int CIRCLE_VIEW_WH = 200;
     private CircleMarkView mStartView;
     private CircleMarkView mEndView;
     private CircleMarkView mControl1View;
     private CircleMarkView mControl2View;
 
-    public SampleBezierView(Context context) {
+    public SampleBezierViewLevel3(Context context) {
         super(context);
         setClipChildren(false);
         mStartView = new CircleMarkView(context, "S");
@@ -38,7 +40,6 @@ public class SampleBezierView extends FrameLayout {
         addView(mEndView, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
         addView(mControl1View, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
         addView(mControl2View, new FrameLayout.LayoutParams(CIRCLE_VIEW_WH, CIRCLE_VIEW_WH));
-        setBackgroundColor(Color.YELLOW);
     }
 
     private CircleMarkView.onMarkChangedListener onMarkChangedListener = new CircleMarkView.onMarkChangedListener() {

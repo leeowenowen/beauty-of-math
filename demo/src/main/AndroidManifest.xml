@@ -3,6 +3,7 @@
     package="com.owo.bom">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
@@ -17,6 +18,9 @@
         <activity
             android:name=".bezier.BezierActivity"
             android:label="@string/title_activity_blank"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".bezier.details.SampleBezierActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

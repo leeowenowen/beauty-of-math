@@ -1,4 +1,4 @@
-package owo.bom;
+package com.owo.bom.bezier.details;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,15 +7,17 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.widget.FrameLayout;
 
+import owo.bom.CircleMarkView;
 
-public class SampleBezierViewLevel1 extends FrameLayout {
+
+public class SampleBezierViewLevel2 extends FrameLayout {
     private static final String TAG = "SampleBezierView";
     private static final int CIRCLE_VIEW_WH = 100;
     private CircleMarkView mStartView;
     private CircleMarkView mEndView;
     private CircleMarkView mControlView;
 
-    public SampleBezierViewLevel1(Context context) {
+    public SampleBezierViewLevel2(Context context) {
         super(context);
         setClipChildren(false);
         mStartView = new CircleMarkView(context, "S");

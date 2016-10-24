@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.owo.base.util.UIHandler;
+
 /**
  * Created by wangli on 16-9-11.
  */
@@ -40,6 +42,7 @@ public class CircleMarkView extends TextView {
         setBackgroundColor(Color.TRANSPARENT);
         setText(mark);
         setGravity(Gravity.CENTER);
+        UIHandler.postDelayed(mNotifyMarkChangeRunnable, CHECK_INTERVAL);
     }
 
     public int centerX() {
@@ -52,6 +55,21 @@ public class CircleMarkView extends TextView {
 
     private float origX = 0;
     private float origY = 0;
+    private static final int CHECK_INTERVAL = 200;
+    private boolean mNeedInvalid;
+    private Runnable mNotifyMarkChangeRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (!mNeedInvalid) {
+                return;
+            }
+            if (markChangedListener != null) {
+                markChangedListener.onMarkChanged();
+            }
+            invalidate();
+            UIHandler.postDelayed(this, CHECK_INTERVAL);
+        }
+    };
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -59,23 +77,25 @@ public class CircleMarkView extends TextView {
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                getParent().requestDisallowInterceptTouchEvent(true);
+                //   getParent().requestDisallowInterceptTouchEvent(true);
                 origX = x;
                 origY = y;
                 Log.d(TAG, "ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
                 doMove(x, y);
-                if (markChangedListener != null) {
-                    markChangedListener.onMarkChanged();
-                }
+                mNeedInvalid = true;
+//
+//                if (markChangedListener != null) {
+//                    markChangedListener.onMarkChanged();
+//                }
                 Log.d(TAG, "ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                getParent().requestDisallowInterceptTouchEvent(false);
+                //  getParent().requestDisallowInterceptTouchEvent(false);
                 Log.d(TAG, "ACTION_UP");
             case MotionEvent.ACTION_OUTSIDE:
-                getParent().requestDisallowInterceptTouchEvent(false);
+                //  getParent().requestDisallowInterceptTouchEvent(false);
                 Log.d(TAG, "ACTION_OUTSIDE");
                 break;
         }
@@ -86,13 +106,12 @@ public class CircleMarkView extends TextView {
         ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) getLayoutParams();
         int newLeftMargin = (int) (getLeft() + x - origX);
         int newTopMargin = (int) (getTop() + y - origY);
-        if (newLeftMargin - mlp.leftMargin < 2 && newTopMargin - mlp.topMargin < 2) {
+        if (Math.abs(newLeftMargin - mlp.leftMargin) < 5 && Math.abs(newTopMargin - mlp.topMargin) < 5) {
             return;
         }
         mlp.leftMargin = newLeftMargin;
         mlp.topMargin = newTopMargin;
         setLayoutParams(mlp);
-        postInvalidate();
     }
 
     private Paint paint = new Paint();
