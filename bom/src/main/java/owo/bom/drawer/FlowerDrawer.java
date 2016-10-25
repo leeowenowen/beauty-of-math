@@ -2,6 +2,7 @@ package owo.bom.drawer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PointF;
 
 import owo.bom.splash.BaseDrawer;
@@ -19,20 +20,28 @@ public class FlowerDrawer extends BaseDrawer {
 
 
     public FlowerDrawer(PointF center) {
+        center(center);
+    }
+
+    public FlowerDrawer center(PointF center) {
         xo = center.x;
         yo = center.y;
+        return this;
     }
 
-    public void setROut(float r) {
+    public FlowerDrawer setROut(float r) {
         R = r;
+        return this;
     }
 
-    public void setRIn(float r) {
+    public FlowerDrawer setRIn(float r) {
         this.r = r;
+        return this;
     }
 
-    public void setN(int n) {
+    public FlowerDrawer setN(int n) {
         this.n = n;
+        return this;
     }
 
     private Path path = new Path();

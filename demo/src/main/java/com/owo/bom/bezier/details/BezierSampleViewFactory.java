@@ -18,15 +18,15 @@ public class BezierSampleViewFactory {
             case BezierConstants.TYPE_BASIC_LEVEL3:
                 return new SampleBezierViewLevel3(context);
             case BezierConstants.TYPE_BASIC_LEVELN:
-                return new SampleBezierViewLevel2(context);
+                return new BezierView(context);
             case BezierConstants.TYPE_ADVANCE_PAGETURN:
                 return new SampleBezierViewLevel2(context);
             case BezierConstants.TYPE_ADVANCE_WATERFLOW:
                 return new SampleBezierViewLevel2(context);
             case BezierConstants.TYPE_ADVANCE_DRAG:
-                return new SampleBezierViewLevel2(context);
+                return new DragView(context);
             case BezierConstants.TYPE_ADVANCE_FLOWER:
-                return new SampleBezierViewLevel2(context);
+                return new FlowerView(context);
             default:
                 return null;
         }
