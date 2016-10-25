@@ -24,8 +24,10 @@ public class FlowerDrawer extends BaseDrawer {
     }
 
     public FlowerDrawer center(PointF center) {
-        xo = center.x;
-        yo = center.y;
+        if (center != null) {
+            xo = center.x;
+            yo = center.y;
+        }
         return this;
     }
 

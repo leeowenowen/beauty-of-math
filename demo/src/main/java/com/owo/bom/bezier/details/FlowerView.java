@@ -26,6 +26,7 @@ public class FlowerView extends SelfDrawView {
 
     private float lastX = 0;
     private float lastY = 0;
+    int n = 1;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -39,6 +40,11 @@ public class FlowerView extends SelfDrawView {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
+                    if (x > lastX || y > lastY) {
+                        n++;
+                    } else {
+                        n--;
+                    }
                     lastX = x;
                     lastY = y;
                     invalidate();
@@ -59,10 +65,8 @@ public class FlowerView extends SelfDrawView {
         if (getWidth() == 0 || getHeight() == 0) {
             return;
         }
-        float endX = (lastX == 0 ? getWidth() * 3 / 4 : lastX);
-        float endY = (lastY == 0 ? getHeight() * 3 / 4 : lastY);
         mDrawer.center(new PointF(getWidth() / 2, getHeight() / 2)).
-                setN(10).setRIn(getWidth() / 8).setROut(getWidth() / 3);
+                setN(n).setRIn(getWidth() / 8).setROut(getWidth() / 3);
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.FILL);
         mDrawer.draw(canvas);
