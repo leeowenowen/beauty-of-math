@@ -26,7 +26,7 @@ public class BezierSampleViewFactory {
             case BezierConstants.TYPE_ADVANCE_DRAG:
                 return new DragView(context);
             case BezierConstants.TYPE_ADVANCE_FLOWER:
-                return new FlowerView(context);
+                return new FLowerLayout(context);
             default:
                 return null;
         }
