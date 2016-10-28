@@ -11,7 +11,6 @@ import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
-import com.owo.bom.bezier.details.WaveView;
 import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class MainActivity extends Activity {
     //        setContentView(view);
     //    setContentView(new SampleBezierViewLevel1(this));
 
-    setContentView(new WaveView(this));
+    setContentView(mListView);
   }
 
   private List<DataItem> setupListData() {

@@ -24,7 +24,7 @@ public class WaveView extends View {
       @Override
       public void run() {
         ObjectAnimator animator = ObjectAnimator.ofFloat(WaveView.this, "offset", 0, getWidth());
-        animator.setDuration(10000);
+        animator.setDuration(1000);
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -33,7 +33,7 @@ public class WaveView extends View {
             postInvalidate();
           }
         });
-        //  animator.start();
+        animator.start();
       }
     }, 1000);
   }
@@ -55,21 +55,21 @@ public class WaveView extends View {
     }
     int h = getHeight() / 2;
     int w = getWidth();
-    int amplitude = 200;
-    mPath.reset();
-    mPath.moveTo(0, h);
-    mPath.cubicTo(w / 4, h + amplitude, w * 3 / 4, h - amplitude, w, h);
-    mPath.cubicTo(w * 5 / 4, h + amplitude, w * 7 / 4, h - amplitude, w * 2, h);
-    mPath.quadTo(w / 4, h + amplitude, w / 2, h);
-    mPath.quadTo(w * 3 / 4, h - amplitude, w, h);
-    mPath.quadTo(w * 5 / 4, h + amplitude, 3 * w / 2, h);
-    mPath.quadTo(w * 7 / 4, h - amplitude, w * 2, h);
-    mPath.lineTo(w * 2, getHeight());
-    mPath.lineTo(0, getHeight());
-    mPath.close();
-    mMatrix.reset();
-    mMatrix.postTranslate(-mXOffset, 0);
-    mPath.transform(mMatrix);
-    canvas.drawPath(mPath, mPaint);
+    int amplitude = 100;
+    {
+      mPath.reset();
+      mPath.moveTo(0, h);
+      mPath.quadTo(w / 4, h + amplitude, w / 2, h);
+      mPath.quadTo(w * 3 / 4, h - amplitude, w, h);
+      mPath.quadTo(w * 5 / 4, h + amplitude, 3 * w / 2, h);
+      mPath.quadTo(w * 7 / 4, h - amplitude, w * 2, h);
+      mPath.lineTo(w * 2, getHeight());
+      mPath.lineTo(0, getHeight());
+      mPath.close();
+      mMatrix.reset();
+      mMatrix.postTranslate(-mXOffset, 0);
+      mPath.transform(mMatrix);
+      canvas.drawPath(mPath, mPaint);
+    }
   }
 }

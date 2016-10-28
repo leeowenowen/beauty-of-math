@@ -91,7 +91,7 @@ public class BezierActivity extends ListActivity {
         List<DataItem> list = new ArrayList<>();
         {
             BezierCoverView sbv = new BezierCoverView(this);
-            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_FLOWER, getResources().getString(R.string.bezier_pageturn), //
+            list.add(new DataItem(BezierConstants.TYPE_ADVANCE_PAGETURN, getResources().getString(R.string.bezier_pageturn), //
                     getResources().getString(R.string.bezier_pageturn),//
                     sbv
             ));
