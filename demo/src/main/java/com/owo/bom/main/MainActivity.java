@@ -1,12 +1,18 @@
 package com.owo.bom.main;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.owo.base.util.UIUtil;
+import com.owo.base.util.WindowUtil;
 import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
@@ -15,6 +21,10 @@ import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import owo.bom.drawable.BaseDrawable;
+import owo.bom.splash.SplashDrawerDirector;
+
 
 public class MainActivity extends Activity {
   private static final String TAG = MainActivity.class.getSimpleName();
@@ -38,28 +48,30 @@ public class MainActivity extends Activity {
         }
       }
     });
-    //        final View view = new View(this);
-    //        PointF center = new PointF();
-    //        DisplayMetrics dm = WindowUtil.getScreenSize(this);
-    //        center.x = dm.widthPixels / 2;
-    //        center.y = dm.heightPixels / 2;
-    //        final SplashDrawerDirector director = new SplashDrawerDirector(center);
-    //        UIUtil.setBackgroundDrawable(view, new BaseDrawable() {
-    //            @Override
-    //            public void draw(Canvas canvas) {
-    //                director.draw(canvas);
-    //            }
-    //        });
-    //        director.setAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-    //            @Override
-    //                view.invalidate();
-    //            }
-    //        });
-    //        director.start();
-    //        setContentView(view);
-    //    setContentView(new SampleBezierViewLevel1(this));
+    final View view = new View(this);
+    PointF center = new PointF();
+    DisplayMetrics dm = WindowUtil.getScreenSize(this);
+    center.x = dm.widthPixels / 2;
+    center.y = dm.heightPixels / 2;
+    final SplashDrawerDirector director = new SplashDrawerDirector(center);
+    UIUtil.setBackgroundDrawable(view, new BaseDrawable() {
+      @Override
+      public void draw(Canvas canvas) {
+        director.draw(canvas);
+      }
+    });
+    director.setAnimatorUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
-    setContentView(mListView);
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
+        view.invalidate();
+      }
+    });
+    director.start();
+
+    setContentView(view);
+
+    //setContentView(new BezierView(this));
   }
 
   private List<DataItem> setupListData() {

@@ -1,7 +1,6 @@
 package owo.bom;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,8 +11,6 @@ import android.view.View;
 
 public class BezierView extends View {
   private Paint mPaint = new Paint();
-  Bitmap mMemBitmap;
-  private Canvas mMemCanvas;
   private Path mPath = new Path();
 
   public BezierView(Context context) {
@@ -24,7 +21,6 @@ public class BezierView extends View {
     mPaint.setStyle(Paint.Style.STROKE);
     mPaint.setStrokeWidth(2);
     mPaint.setTextSize(23.0f);
-    mMemBitmap = Bitmap.createBitmap(1100, 1000, Bitmap.Config.ARGB_8888);
     int c10 = c(1, 0);
     int c11 = c(1, 1);
     int c20 = c(2, 0);
@@ -37,7 +33,6 @@ public class BezierView extends View {
     double i1 = Math.pow(2, 1);
     double i2 = Math.pow(2, 2);
     double i3 = Math.pow(2, 4);
-    mMemCanvas = new Canvas(mMemBitmap);
   }
 
   private int width = 800;
@@ -149,7 +144,6 @@ public class BezierView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    drawMain(mMemCanvas);
-    canvas.drawBitmap(mMemBitmap, 0, 0, null);
+    drawMain(canvas);
   }
 }
