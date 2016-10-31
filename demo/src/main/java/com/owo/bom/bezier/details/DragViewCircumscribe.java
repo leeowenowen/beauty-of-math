@@ -13,16 +13,16 @@ import android.view.animation.AccelerateInterpolator;
 
 import com.owo.bom.base.SelfDrawView;
 
-import owo.bom.drawer.CircleBezierDrawer;
+import owo.bom.drawer.CircleBezierDrawerCircumscribe;
 
 /**
  * Created by wangli on 16-10-25.
  */
-public class DragView extends SelfDrawView {
-  private static final String TAG = DragView.class.getSimpleName();
-  private CircleBezierDrawer mDrawer = new CircleBezierDrawer();
+public class DragViewCircumscribe extends SelfDrawView {
+  private static final String TAG = DragViewCircumscribe.class.getSimpleName();
+  private CircleBezierDrawerCircumscribe mDrawer = new CircleBezierDrawerCircumscribe();
 
-  public DragView(Context context) {
+  public DragViewCircumscribe(Context context) {
     super(context);
   }
 
@@ -48,17 +48,17 @@ public class DragView extends SelfDrawView {
         Log.d(TAG, "ACTION_MOVE");
         break;
       case MotionEvent.ACTION_UP:
-        doBounce();
+        doAnimation();
         Log.d(TAG, "ACTION_UP");
       case MotionEvent.ACTION_OUTSIDE:
-        doBounce();
+        doAnimation();
         Log.d(TAG, "ACTION_OUTSIDE");
         break;
     }
     return true;
   }
 
-  public void doBounce() {
+  public void doAnimation() {
     float cx = getWidth() / 2;
     float cy = getHeight() / 2;
     final float theLastX = lastX;

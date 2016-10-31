@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PointF;
 
-import owo.bom.drawer.CircleBezierDrawer;
+import owo.bom.drawer.CircleBezierDrawerInscribe;
 
 /**
  * Created by wangli on 9/17/16.
  */
 public class CircleToCrossDrawer extends BaseDrawer {
-    CircleBezierDrawer mLefDrawer = new CircleBezierDrawer();
-    CircleBezierDrawer mRightDrawer = new CircleBezierDrawer();
-    CircleBezierDrawer mTopDrawer = new CircleBezierDrawer();
-    CircleBezierDrawer mBottomDrawer = new CircleBezierDrawer();
+    CircleBezierDrawerInscribe mLefDrawer = new CircleBezierDrawerInscribe();
+    CircleBezierDrawerInscribe mRightDrawer = new CircleBezierDrawerInscribe();
+    CircleBezierDrawerInscribe mTopDrawer = new CircleBezierDrawerInscribe();
+    CircleBezierDrawerInscribe mBottomDrawer = new CircleBezierDrawerInscribe();
 
     private PointF mRCenter;
 

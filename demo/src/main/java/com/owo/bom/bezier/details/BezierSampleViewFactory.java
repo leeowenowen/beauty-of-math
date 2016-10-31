@@ -2,6 +2,7 @@ package com.owo.bom.bezier.details;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.owo.bom.bezier.BezierConstants;
 
@@ -24,7 +25,15 @@ public class BezierSampleViewFactory {
       case BezierConstants.TYPE_ADVANCE_WATERFLOW:
         return new WaveView(context);
       case BezierConstants.TYPE_ADVANCE_DRAG:
-        return new DragView(context);
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        DragViewCircumscribe circumscribe = new DragViewCircumscribe(context);
+        DragViewInscribe inscribe = new DragViewInscribe(context);
+        layout.addView(circumscribe,
+                       new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+        layout.addView(inscribe,
+                       new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+        return layout;
       case BezierConstants.TYPE_ADVANCE_FLOWER:
         return new FLowerLayout(context);
       default:

@@ -7,7 +7,7 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 
 
-public class CircleBezierDrawer {
+public class CircleBezierDrawerInscribe {
     private static final int MODE_TR = 1;
     private static final int MODE_TL = 2;
     private static final int MODE_BL = 3;
@@ -27,47 +27,47 @@ public class CircleBezierDrawer {
 
     private Path mTmpPath = new Path();
 
-    public CircleBezierDrawer() {
+    public CircleBezierDrawerInscribe() {
     }
 
-    public CircleBezierDrawer start(float x, float y) {
+    public CircleBezierDrawerInscribe start(float x, float y) {
         mStartInit.x = x;
         mStartInit.y = y;
         return this;
     }
 
-    public CircleBezierDrawer R(float R) {
+    public CircleBezierDrawerInscribe R(float R) {
         mR = R;
         return this;
     }
 
-    public CircleBezierDrawer r(float r) {
+    public CircleBezierDrawerInscribe r(float r) {
         mr = r;
         return this;
     }
 
-    public CircleBezierDrawer end(float x, float y) {
+    public CircleBezierDrawerInscribe end(float x, float y) {
         mEndInit.x = x;
         mEndInit.y = y;
         return this;
     }
 
-    public CircleBezierDrawer withStartCircle() {
+    public CircleBezierDrawerInscribe withStartCircle() {
         mDrawStartCircle = true;
         return this;
     }
 
-    public CircleBezierDrawer withEndCircle() {
+    public CircleBezierDrawerInscribe withEndCircle() {
         mDrawEndCircle = true;
         return this;
     }
 
-    public CircleBezierDrawer withPoints() {
+    public CircleBezierDrawerInscribe withPoints() {
         mDrawPoints = true;
         return this;
     }
 
-    public CircleBezierDrawer withAxiOffset(float axiOffset) {
+    public CircleBezierDrawerInscribe withAxiOffset(float axiOffset) {
         mAixOffset = axiOffset;
         return this;
     }
