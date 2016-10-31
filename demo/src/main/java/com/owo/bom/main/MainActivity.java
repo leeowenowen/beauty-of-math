@@ -16,6 +16,8 @@ import com.owo.bom.main.covers.BezierCoverView;
 import java.util.ArrayList;
 import java.util.List;
 
+import owo.bom.decor.CircleDecorView;
+
 
 public class MainActivity extends Activity {
   private static final String TAG = MainActivity.class.getSimpleName();
@@ -62,7 +64,7 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(mListView);
+    setContentView(new CircleDecorView(this));
   }
 
   private List<DataItem> setupListData() {

@@ -1,4 +1,4 @@
-package oob.owo.com.webviewadtest;
+package owo.bom.decor;
 
 import android.content.Context;
 import android.graphics.Canvas;
