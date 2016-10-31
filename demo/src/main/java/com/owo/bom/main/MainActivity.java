@@ -16,7 +16,7 @@ import com.owo.bom.main.covers.BezierCoverView;
 import java.util.ArrayList;
 import java.util.List;
 
-import owo.bom.decor.CircleDecorView;
+import owo.bom.fractal.Lace;
 
 
 public class MainActivity extends Activity {
@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(new CircleDecorView(this));
+    setContentView(new Lace(this));
   }
 
   private List<DataItem> setupListData() {

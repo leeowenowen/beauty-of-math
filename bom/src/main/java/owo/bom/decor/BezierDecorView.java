@@ -11,8 +11,8 @@ import android.view.View;
  * Created by wangli on 10/21/16.
  */
 
-public class CircleDecorView extends View {
-  public CircleDecorView(Context context) {
+public class BezierDecorView extends View {
+  public BezierDecorView(Context context) {
     super(context);
     mPaint.setAntiAlias(true);
     mPaint.setColor(Color.RED);
@@ -22,7 +22,8 @@ public class CircleDecorView extends View {
   Paint mPaint = new Paint();
   Path mPath = new Path();
 
-  private double mPreRx, mPreRy;
+  private double prerx1;
+  private double prery1;
 
   @Override
   protected void onDraw(Canvas canvas) {
@@ -36,21 +37,23 @@ public class CircleDecorView extends View {
     mPath.reset();
     double step_angle = Math.PI / 20;
     int R = 400;
+    int r = 300;
     for (int i = 0; i < 100; i++) {
       double angle = i * step_angle;
       double Rx1 = ox + R * Math.cos(angle);
       double Ry1 = oy + R * Math.sin(angle);
+
+      double rx1 = ox + r * Math.cos(angle);
+      double ry1 = oy + r * Math.sin(angle);
       if (mPath.isEmpty()) {
         mPath.moveTo((float) Rx1, (float) Ry1);
       } else {
-        double edge = Math.sqrt((Rx1 - mPreRx) * (Rx1 - mPreRx) + (Ry1 - mPreRy) * (Ry1 - mPreRy));
-        mPath.addCircle((float) (mPreRx + Rx1) / 2,
-                        (float) (mPreRy + Ry1) / 2,
-                        (float) edge / 2,
-                        Path.Direction.CCW);
+        double rmidx = (rx1 + prerx1) / 2;
+        double rmidy = (ry1 + prery1) / 2;
+        mPath.quadTo((float) rmidx, (float) rmidy, (float) Rx1, (float) Ry1);
       }
-      mPreRx = Rx1;
-      mPreRy = Ry1;
+      prerx1 = rx1;
+      prery1 = ry1;
     }
 
     canvas.drawPath(mPath, mPaint);
