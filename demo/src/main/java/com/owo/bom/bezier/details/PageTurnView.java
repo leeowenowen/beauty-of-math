@@ -13,8 +13,6 @@ import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Region;
-import android.text.Layout;
-import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,7 +20,6 @@ import android.view.View;
 public class PageTurnView extends View {
   //memory buffer
   private Bitmap mBackground = null;
-  private Canvas mMemCanvas = null;
   //pages to draw
   private Bitmap mCurPage = null;
   private Bitmap mCurPageBack = null;
@@ -56,29 +53,20 @@ public class PageTurnView extends View {
   private String mStrCurBack = new String();
   private String mStrNext = new String();
 
-  private TextPaint mTextPaint = new TextPaint();
   private TextPaint mPointPaint = new TextPaint();
 
   //width and height of book
-  private static int kWidth = 600;
-  private static int kHeight = 700;
+  private static int kWidth;
+  private static int kHeight;
   //width and height of canvas(including book and all the points show area)
-  private static int kCanvasWidth = 800;
-  private static int kCanvasHeight = 1024;
+  private static int kCanvasWidth;
+  private static int kCanvasHeight;
 
   public PageTurnView(Context context) {
     super(context);
   }
 
-  public PageTurnView(Context context, int w, int h) {
-    super(context);
-    setup(context, w, h);
-  }
-
   private void setup(Context context, int w, int h) {
-    w = w * 2 / 3;
-    h = h * 2 / 3;
-
     kWidth = w;
     kHeight = h;
     kCanvasHeight = h;
@@ -86,23 +74,13 @@ public class PageTurnView extends View {
 
     //initialize background and default points position
     mBackground = Bitmap.createBitmap(kCanvasWidth, kCanvasHeight, Bitmap.Config.ARGB_8888);
-    mMemCanvas = new Canvas(mBackground);
 
     mPointA.x = kWidth;
     mPointA.y = kHeight;
     mPointF.x = kWidth;
     mPointF.y = kHeight;
 
-    //make page text, if you want to show page text, uncomment lines below
-    //    for (int i = 0; i < 1000; i++) {
-    //      mStrCur += "AAAAAAAA";
-    //      mStrCurBack += "BBBBBBBB";
-    //      mStrNext += "CCCCCCCC";
-    //    }
     //initialize text paint and point paint
-    mTextPaint.setColor(Color.WHITE);
-    mTextPaint.setTextSize(28);
-
     mPointPaint.setColor(Color.BLACK);
     mPointPaint.setTextSize(35);
     mPointPaint.setFakeBoldText(true);
@@ -110,38 +88,14 @@ public class PageTurnView extends View {
     mCurPage = Bitmap.createBitmap(kWidth, kHeight, Bitmap.Config.ARGB_8888);
     Canvas tmpCanvas = new Canvas(mCurPage);
     tmpCanvas.drawColor(Color.GREEN);
-    StaticLayout layout = new StaticLayout(mStrCur,
-                                           mTextPaint,
-                                           kWidth,
-                                           Layout.Alignment.ALIGN_NORMAL,
-                                           1.0F,
-                                           0.0F,
-                                           true);
-    layout.draw(tmpCanvas);
 
     mCurPageBack = Bitmap.createBitmap(kWidth, kHeight, Bitmap.Config.ARGB_8888);
     tmpCanvas = new Canvas(mCurPageBack);
     tmpCanvas.drawColor(Color.RED);
-    layout = new StaticLayout(mStrCurBack,
-                              mTextPaint,
-                              kWidth,
-                              Layout.Alignment.ALIGN_NORMAL,
-                              1.0F,
-                              0.0F,
-                              true);
-    layout.draw(tmpCanvas);
 
     mNextPage = Bitmap.createBitmap(kWidth, kHeight, Bitmap.Config.ARGB_8888);
     tmpCanvas = new Canvas(mNextPage);
     tmpCanvas.drawColor(Color.BLUE);
-    layout = new StaticLayout(mStrNext,
-                              mTextPaint,
-                              kWidth,
-                              Layout.Alignment.ALIGN_NORMAL,
-                              1.0F,
-                              0.0F,
-                              true);
-    layout.draw(tmpCanvas);
   }
 
   private void JudgePointF() {
@@ -312,9 +266,7 @@ public class PageTurnView extends View {
     if (mCurPageBack == null) {
       setup(getContext(), getWidth(), getHeight());
     }
-    //  mMemCanvas.drawColor(Color.YELLOW);
     drawPage(canvas);
-    //  canvas.drawBitmap(mBackground, 0, 0, null);
   }
 
   @Override
