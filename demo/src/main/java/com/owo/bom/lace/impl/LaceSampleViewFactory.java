@@ -1,19 +1,20 @@
 package com.owo.bom.lace.impl;
 
+
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import com.owo.bom.bezier.BezierConstants;
-import com.owo.bom.bezier.impl.BezierView;
-import com.owo.bom.bezier.impl.DragViewCircumscribe;
-import com.owo.bom.bezier.impl.DragViewInscribe;
-import com.owo.bom.bezier.impl.FLowerLayout;
-import com.owo.bom.bezier.impl.PageTurnView;
-import com.owo.bom.bezier.impl.PrincipleView;
-import com.owo.bom.bezier.impl.SampleBezierViewLevel2;
-import com.owo.bom.bezier.impl.SampleBezierViewLevel3;
-import com.owo.bom.bezier.impl.WaveView;
+import com.owo.bom.lace.LaceConstants;
+
+import owo.bom.ArrowView;
+import owo.bom.CloverView;
+import owo.bom.GrassView;
+import owo.bom.InvoluteView;
+import owo.bom.SpiralView;
+import owo.bom.StarView;
+import owo.bom.VerticalView;
+import owo.bom.Y_ax_b_View;
+import owo.bom.sincos_View;
 
 /**
  * Created by wangli on 16-10-24.
@@ -21,32 +22,24 @@ import com.owo.bom.bezier.impl.WaveView;
 public class LaceSampleViewFactory {
   public View create(Context context, String type) {
     switch (type) {
-      case BezierConstants.TYPE_BASIC_LEVEL1:
-        return new SampleBezierViewLevel2(context);
-      case BezierConstants.TYPE_BASIC_LEVEL2:
-        return new SampleBezierViewLevel2(context);
-      case BezierConstants.TYPE_BASIC_LEVEL3:
-        return new SampleBezierViewLevel3(context);
-      case BezierConstants.TYPE_BASIC_LEVELN:
-        return new BezierView(context);
-      case BezierConstants.TYPE_ADVANCE_PAGETURN:
-        return new PageTurnView(context);
-      case BezierConstants.TYPE_ADVANCE_WATERFLOW:
-        return new WaveView(context);
-      case BezierConstants.TYPE_ADVANCE_DRAG:
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        DragViewCircumscribe circumscribe = new DragViewCircumscribe(context);
-        DragViewInscribe inscribe = new DragViewInscribe(context);
-        layout.addView(circumscribe,
-                       new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
-        layout.addView(inscribe,
-                       new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
-        return layout;
-      case BezierConstants.TYPE_ADVANCE_FLOWER:
-        return new FLowerLayout(context);
-      case BezierConstants.TYPE_PRINCIPLE:
-        return new PrincipleView(context);
+      case LaceConstants.TYPE_CURVE_LINEAR_FUNCTION:
+        return new Y_ax_b_View(context);
+      case LaceConstants.TYPE_CURVE_SINCOS:
+        return new sincos_View(context);
+      case LaceConstants.TYPE_CURVE_ARROW:
+        return new ArrowView(context);
+      case LaceConstants.TYPE_CURVE_CLOVER:
+        return new CloverView(context);
+      case LaceConstants.TYPE_CURVE_INVOLUTE:
+        return new InvoluteView(context);
+      case LaceConstants.TYPE_CURVE_GRASS:
+        return new GrassView(context);
+      case LaceConstants.TYPE_CURVE_SPIRAL:
+        return new SpiralView(context);
+      case LaceConstants.TYPE_CURVE_STAR:
+        return new StarView(context);
+      case LaceConstants.TYPE_CURVE_VERTICAL:
+        return new VerticalView(context);
       default:
         return null;
     }

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.util.Log;
 import android.view.View;
 
 public class StarView extends View {
@@ -20,13 +19,10 @@ public class StarView extends View {
     mPaint.setTextSize(23.0f);
   }
 
-  private int width = 800;
-  private int height = 800;
-
   private void drawMain(Canvas canvas) {
     int width = getWidth();
     int height = getHeight();
-    double offset = 100;
+    double offset = 0;
     double centerX = width / 2 + offset;
     double centerY = height / 2 + offset;
     double leftX = 0 + offset;
@@ -48,43 +44,43 @@ public class StarView extends View {
     mPath.reset();
 
     //starview
-    //        for (double t = -2 * Math.PI; t < 2 * Math.PI; t += 0.01) {
-    //            double x = 10 * Math.pow(Math.sin(t), 3);
-    //            double y = 10 * Math.pow(Math.cos(t), 3);
-    //
-    //
-    //            double x2 = x * 20 + 500;
-    //            double y2 = 500 - y * 40;
-    //            if (mPath.isEmpty()) {
-    //                mPath.moveTo((float) x2, (float) y2);
-    //            } else {
-    //                mPath.lineTo((float) x2, (float) y2);
-    //            }
-    //        }
-    //摆线
-    int n = 3;
-    int a = 10;
-    int b = 15;
-    for (double t = -8 * Math.PI; t < 8 * Math.PI; t += 0.01) {
-      //            double x = 10 * (t - Math.sin(t));
-      //            double y = 10 * (1 - Math.cos(t));
+    for (double t = -2 * Math.PI; t < 2 * Math.PI; t += 0.01) {
+      double x = 10 * Math.pow(Math.sin(t), 3);
+      double y = 10 * Math.pow(Math.cos(t), 3);
 
-      double x = Math.cos(t) + Math.cos(n * t) / n;
-      double y = Math.sin(t) - Math.sin(n * t) / n;
-      x = a * (t - Math.sin(t));
-      y = a * (1 - Math.cos(t));
-      x = a * t - b * Math.sin(t);
-      y = a - b * Math.cos(t);
-      Log.d("xxx", " " + x + ":" + y);
 
-      double x2 = x + 500;
-      double y2 = 500 - y;
+      double x2 = x * 20 + getWidth() / 2;
+      double y2 = getHeight() / 2 - y * 40;
       if (mPath.isEmpty()) {
         mPath.moveTo((float) x2, (float) y2);
       } else {
         mPath.lineTo((float) x2, (float) y2);
       }
     }
+    //摆线
+    //    int n = 3;
+    //    int a = 10;
+    //    int b = 15;
+    //    for (double t = -8 * Math.PI; t < 8 * Math.PI; t += 0.01) {
+    //      //            double x = 10 * (t - Math.sin(t));
+    //      //            double y = 10 * (1 - Math.cos(t));
+    //
+    //      double x = Math.cos(t) + Math.cos(n * t) / n;
+    //      double y = Math.sin(t) - Math.sin(n * t) / n;
+    //      x = a * (t - Math.sin(t));
+    //      y = a * (1 - Math.cos(t));
+    //      x = a * t - b * Math.sin(t);
+    //      y = a - b * Math.cos(t);
+    //      Log.d("xxx", " " + x + ":" + y);
+    //
+    //      double x2 = x + getWidth() / 2;
+    //      double y2 = getHeight() / 2 - y;
+    //      if (mPath.isEmpty()) {
+    //        mPath.moveTo((float) x2, (float) y2);
+    //      } else {
+    //        mPath.lineTo((float) x2, (float) y2);
+    //      }
+    //    }
     canvas.drawPath(mPath, mPaint);
   }
 

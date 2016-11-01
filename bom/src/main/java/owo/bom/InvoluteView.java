@@ -32,13 +32,13 @@ public class InvoluteView extends View {
     double r = 10;
     double t = 0;
     double angle = cita(t) + t;
-    double x = 400 + r * Math.cos(angle) + angle * r * Math.sin(angle);
-    double y = 400 + r * Math.sin(angle) - angle * r * Math.cos(angle);
+    double x = getWidth() / 3 + r * Math.cos(angle) + angle * r * Math.sin(angle);
+    double y = getHeight() / 3 + r * Math.sin(angle) - angle * r * Math.cos(angle);
     mPath.moveTo((float) x, (float) y);
-    for (; t < 2 * Math.PI; t += 0.00001) {
+    for (; t < 2 * Math.PI; t += 0.001) {
       angle = cita(t) + t;
-      x = 400 + r * Math.cos(angle) + angle * r * Math.sin(angle);
-      y = 400 + r * Math.sin(angle) - angle * r * Math.cos(angle);
+      x = getWidth() / 3 + r * Math.cos(angle) + angle * r * Math.sin(angle);
+      y = getHeight() / 3 + r * Math.sin(angle) - angle * r * Math.cos(angle);
       //mPath.lineTo((float) x, (float) y);
       canvas.drawPoint((float) x, (float) y, mPaint);
     }

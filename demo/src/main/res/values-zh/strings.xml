@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">BeautyOfMath</string>
     <string name="main_title_bezier">贝塞尔曲线</string>
-    <string name="main_desc_bezier">贝塞尔曲线</string>
 </resources>

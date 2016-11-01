@@ -22,7 +22,7 @@ public class Y_ax_b_View extends View {
   private void drawMain(Canvas canvas) {
     int width = getWidth();
     int height = getHeight();
-    double offset = 100;
+    double offset = 0;
     double centerX = width / 2 + offset;
     double centerY = height / 2 + offset;
     double leftX = 0 + offset;
@@ -51,8 +51,8 @@ public class Y_ax_b_View extends View {
       y = -0.001 * x * x * x;
 
 
-      int x2 = x + 500;
-      double y2 = 500 - y;
+      int x2 = x + width / 2;
+      double y2 = height / 2 - y;
       if (mPath.isEmpty()) {
         mPath.moveTo((float) x2, (float) y2);
       } else {

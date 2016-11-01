@@ -12,6 +12,7 @@ import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
+import com.owo.bom.lace.LaceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class MainActivity extends Activity {
         switch (position) {
           case 0:
             switchActivity(BezierActivity.class);
+            break;
+          case 1:
+            switchActivity(LaceActivity.class);
             break;
           default:
             break;
@@ -71,7 +75,14 @@ public class MainActivity extends Activity {
       View sbv = new View(this);
       sbv.setBackgroundColor(Color.BLACK);
       list.add(new DataItem(getResources().getString(R.string.main_title_bezier), //
-                            getResources().getString(R.string.main_desc_bezier),//
+                            getResources().getString(R.string.main_title_bezier),//
+                            sbv));
+    }
+    {
+      View sbv = new View(this);
+      sbv.setBackgroundColor(Color.BLACK);
+      list.add(new DataItem(getResources().getString(R.string.main_title_lace), //
+                            getResources().getString(R.string.main_title_lace),//
                             sbv));
     }
     return list;

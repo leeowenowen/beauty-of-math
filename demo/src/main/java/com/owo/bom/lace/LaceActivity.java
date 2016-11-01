@@ -9,9 +9,8 @@ import android.widget.ListView;
 import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.GroupDataItem;
-import com.owo.bom.bezier.BezierConstants;
 import com.owo.bom.bezier.BezierGroupAdapter;
-import com.owo.bom.bezier.impl.SampleBezierActivity;
+import com.owo.bom.lace.impl.SampleLaceActivity;
 import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
@@ -27,9 +26,9 @@ public class LaceActivity extends ListActivity {
     BezierGroupAdapter adapter = new BezierGroupAdapter();
     // add curve group
     {
-      List<DataItem> items = setupBasicListData();
+      List<DataItem> items = setupCurveListData();
       GroupDataItem group = new GroupDataItem();
-      group.setTitle(getResources().getString(R.string.curve_title));
+      group.setTitle(getResources().getString(R.string.lace_title));
       group.setItems(items);
       adapter.addGroup(group);
     }
@@ -43,105 +42,95 @@ public class LaceActivity extends ListActivity {
       return;
     }
     DataItem item = (DataItem) getListAdapter().getItem(position);
-    Intent intent = new Intent(this, SampleBezierActivity.class);
-    intent.putExtra(BezierConstants.KEY_TYPE, item.getId());
+    Intent intent = new Intent(this, SampleLaceActivity.class);
+    intent.putExtra(LaceConstants.KEY_TYPE, item.getId());
     startActivity(intent);
   }
 
-  private List<DataItem> setupBasicListData() {
+  private List<DataItem> setupCurveListData() {
     List<DataItem> list = new ArrayList<>();
     {
       BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL1,
-                            getResources().getString(R.string.bezier_level_1),
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_LINEAR_FUNCTION,
+                            getResources().getString(R.string.lace_linear_function),
                             //
-                            getResources().getString(R.string.bezier_level_1),
-                            //
-                            sbv));
-    }
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL2,
-                            getResources().getString(R.string.bezier_level_2),
-                            //
-                            getResources().getString(R.string.bezier_level_2),
+                            getResources().getString(R.string.lace_linear_function),
                             //
                             sbv));
     }
     {
       BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVEL3,
-                            getResources().getString(R.string.bezier_level_3),
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_SINCOS,
+                            getResources().getString(R.string.lace_sincos),
                             //
-                            getResources().getString(R.string.bezier_level_3),
+                            getResources().getString(R.string.lace_sincos),
                             //
                             sbv));
     }
     {
       BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_BASIC_LEVELN,
-                            getResources().getString(R.string.bezier_level_n),
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_ARROW,
+                            getResources().getString(R.string.lace_arrow),
                             //
-                            getResources().getString(R.string.bezier_level_n),
+                            getResources().getString(R.string.lace_arrow),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_CLOVER,
+                            getResources().getString(R.string.lace_clover),
+                            //
+                            getResources().getString(R.string.lace_clover),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_INVOLUTE,
+                            getResources().getString(R.string.lace_involute),
+                            //
+                            getResources().getString(R.string.lace_involute),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_GRASS,
+                            getResources().getString(R.string.lace_grass),
+                            //
+                            getResources().getString(R.string.lace_grass),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_SPIRAL,
+                            getResources().getString(R.string.lace_spiral),
+                            //
+                            getResources().getString(R.string.lace_spiral),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_STAR,
+                            getResources().getString(R.string.lace_star),
+                            //
+                            getResources().getString(R.string.lace_star),
+                            //
+                            sbv));
+    }
+    {
+      BezierCoverView sbv = new BezierCoverView(this);
+      list.add(new DataItem(LaceConstants.TYPE_CURVE_VERTICAL,
+                            getResources().getString(R.string.lace_vertical),
+                            //
+                            getResources().getString(R.string.lace_vertical),
                             //
                             sbv));
     }
     return list;
   }
 
-  private List<DataItem> setupAdvanceListData() {
-    List<DataItem> list = new ArrayList<>();
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_ADVANCE_PAGETURN,
-                            getResources().getString(R.string.bezier_pageturn),
-                            //
-                            getResources().getString(R.string.bezier_pageturn),
-                            //
-                            sbv));
-    }
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_ADVANCE_WATERFLOW,
-                            getResources().getString(R.string.bezier_waterflow),
-                            //
-                            getResources().getString(R.string.bezier_waterflow),
-                            //
-                            sbv));
-    }
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_ADVANCE_DRAG,
-                            getResources().getString(R.string.bezier_drag),
-                            //
-                            getResources().getString(R.string.bezier_drag),
-                            //
-                            sbv));
-    }
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_ADVANCE_FLOWER,
-                            getResources().getString(R.string.bezier_flower),
-                            //
-                            getResources().getString(R.string.bezier_flower),
-                            //
-                            sbv));
-    }
-    return list;
-  }
-
-
-  private List<DataItem> setupPrincipleListData() {
-    List<DataItem> list = new ArrayList<>();
-    {
-      BezierCoverView sbv = new BezierCoverView(this);
-      list.add(new DataItem(BezierConstants.TYPE_PRINCIPLE,
-                            getResources().getString(R.string.bezier_principle),
-                            //
-                            getResources().getString(R.string.bezier_principle),
-                            //
-                            sbv));
-    }
-    return list;
-  }
 }

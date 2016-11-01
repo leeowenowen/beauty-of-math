@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BeautyOfMath</string>
     <string name="main_title_bezier">Bezier</string>
-    <string name="main_desc_bezier">Bezier</string>
+    <string name="main_title_lace">Lace</string>
     <string name="title_activity_blank">BlankActivity</string>
     <string name="bezier_basic">Basic</string>
     <string name="bezier_level_1">Level 1</string>
@@ -18,5 +18,14 @@
     <string name="outter_radius">Outter Radius:</string>
     <string name="inner_radius">Inner Radius</string>
 
-    <string name="curve_title">Curve</string>
+    <string name="lace_title">Lace</string>
+    <string name="lace_linear_function">Linear Function</string>
+    <string name="lace_sincos">SinCos</string>
+    <string name="lace_arrow">Arrow</string>
+    <string name="lace_clover">Clover</string>
+    <string name="lace_involute">Involute</string>
+    <string name="lace_grass">Grass</string>
+    <string name="lace_spiral">Spiral</string>
+    <string name="lace_star">Star</string>
+    <string name="lace_vertical">Vertical</string>
 </resources>

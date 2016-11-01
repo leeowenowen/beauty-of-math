@@ -41,8 +41,14 @@
             android:name=".bezier.impl.SampleBezierActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".test.TestActivity">
-
         </activity>
+        <activity
+            android:name=".lace.LaceActivity"
+            android:label="@string/title_activity_blank"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".lace.impl.SampleLaceActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

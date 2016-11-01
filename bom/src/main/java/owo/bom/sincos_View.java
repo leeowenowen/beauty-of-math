@@ -22,7 +22,7 @@ public class sincos_View extends View {
   private void drawMain(Canvas canvas) {
     int width = getWidth();
     int height = getHeight();
-    double offset = 100;
+    double offset = 0;
     double centerX = width / 2 + offset;
     double centerY = height / 2 + offset;
     double leftX = 0 + offset;
@@ -51,8 +51,8 @@ public class sincos_View extends View {
       y = Math.sin(x);
 
 
-      double x2 = x * 20 + 500;
-      double y2 = 500 - y * 40;
+      double x2 = x * 20 + width / 2;
+      double y2 = height / 2 - y * 40;
       if (mPath.isEmpty()) {
         mPath.moveTo((float) x2, (float) y2);
       } else {
