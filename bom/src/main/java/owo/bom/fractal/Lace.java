@@ -13,7 +13,7 @@ import android.view.View;
 
 public class Lace extends View {
   private Paint mPaint = new Paint();
-  private int maxDepth = 14;
+  private int maxDepth = 16;
 
   public Lace(Context context) {
     super(context);
@@ -30,7 +30,7 @@ public class Lace extends View {
     }
     float cx = getWidth() / 2;
     float cy = getHeight() / 2;
-    float edge = 20;
+    float edge = 50;
     drawLace(canvas, cx, cy, cx + edge, cy, edge, 0);
   }
 
@@ -58,7 +58,7 @@ public class Lace extends View {
 //    mPath.lineTo(xo, yo);
 //    mPath.lineTo((float) x3, (float) y3);
 //    canvas.drawPath(mPath, mPaint);
-    canvas.drawLine((float) x2, (float) y2, xo, yo,mPaint);
+    canvas.drawLine((float) x2, (float) y2, xo, yo, mPaint);
     canvas.drawLine((float) x3, (float) y3, xo, yo, mPaint);
     drawLace(canvas, (float) x2, (float) y2, xo, yo, edge, depth + 1);
     drawLace(canvas, (float) x3, (float) y3, xo, yo, edge, depth + 1);
