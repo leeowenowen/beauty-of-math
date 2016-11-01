@@ -21,24 +21,11 @@ public class BezierView extends View {
     mPaint.setStyle(Paint.Style.STROKE);
     mPaint.setStrokeWidth(2);
     mPaint.setTextSize(23.0f);
-    int c10 = c(1, 0);
-    int c11 = c(1, 1);
-    int c20 = c(2, 0);
-    int c21 = c(2, 1);
-    int c22 = c(2, 2);
-    int c30 = c(3, 0);
-    int c31 = c(3, 1);
-    int c32 = c(3, 2);
-    int c33 = c(3, 3);
-    double i1 = Math.pow(2, 1);
-    double i2 = Math.pow(2, 2);
-    double i3 = Math.pow(2, 4);
   }
 
-  private int width = 800;
-  private int height = 800;
-
   private void drawMain(Canvas canvas) {
+    int width = getWidth();
+    int height = getHeight();
     double offset = 100;
     double centerX = width / 2 + offset;
     double centerY = height / 2 + offset;

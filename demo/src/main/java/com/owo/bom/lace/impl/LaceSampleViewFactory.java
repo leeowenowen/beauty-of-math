@@ -1,15 +1,24 @@
-package com.owo.bom.bezier.details;
+package com.owo.bom.lace.impl;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.owo.bom.bezier.BezierConstants;
+import com.owo.bom.bezier.impl.BezierView;
+import com.owo.bom.bezier.impl.DragViewCircumscribe;
+import com.owo.bom.bezier.impl.DragViewInscribe;
+import com.owo.bom.bezier.impl.FLowerLayout;
+import com.owo.bom.bezier.impl.PageTurnView;
+import com.owo.bom.bezier.impl.PrincipleView;
+import com.owo.bom.bezier.impl.SampleBezierViewLevel2;
+import com.owo.bom.bezier.impl.SampleBezierViewLevel3;
+import com.owo.bom.bezier.impl.WaveView;
 
 /**
  * Created by wangli on 16-10-24.
  */
-public class BezierSampleViewFactory {
+public class LaceSampleViewFactory {
   public View create(Context context, String type) {
     switch (type) {
       case BezierConstants.TYPE_BASIC_LEVEL1:
@@ -36,6 +45,8 @@ public class BezierSampleViewFactory {
         return layout;
       case BezierConstants.TYPE_ADVANCE_FLOWER:
         return new FLowerLayout(context);
+      case BezierConstants.TYPE_PRINCIPLE:
+        return new PrincipleView(context);
       default:
         return null;
     }

@@ -1,15 +1,10 @@
-package com.owo.bom.bezier.details;
+package com.owo.bom.bezier.impl;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.view.DragEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import owo.bom.CircleMarkView;

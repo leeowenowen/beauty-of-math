@@ -1,4 +1,4 @@
-package com.owo.bom.bezier.details;
+package com.owo.bom.bezier.impl;
 
 /**
  * Created by wangli on 7/19/16.

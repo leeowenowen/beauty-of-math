@@ -1,7 +1,6 @@
 package owo.bom;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,8 +15,6 @@ import java.util.List;
 
 public class WaterDropView2 extends View {
   private Paint mPaint = new Paint();
-  Bitmap mMemBitmap;
-  private Canvas mMemCanvas;
   private Path mPath = new Path();
   private Handler mHandler;
   private static final int INTERVAL = 100;
@@ -28,8 +25,6 @@ public class WaterDropView2 extends View {
     mPaint.setStrokeWidth(1);
     mPaint.setStyle(Paint.Style.STROKE);
     mPaint.setTextSize(23.0f);
-    mMemBitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
-    mMemCanvas = new Canvas(mMemBitmap);
     mHandler = new Handler(Looper.getMainLooper());
     mHandler.postDelayed(new Runnable() {
       @Override
@@ -253,9 +248,7 @@ public class WaterDropView2 extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    mMemCanvas.drawColor(Color.BLACK);
-    drawHeart(mMemCanvas);
-    drawWaterDrop(mMemCanvas, mAngle, 100 + width / 2);
-    canvas.drawBitmap(mMemBitmap, 0, 0, null);
+    drawHeart(canvas);
+    drawWaterDrop(canvas, mAngle, 100 + width / 2);
   }
 }

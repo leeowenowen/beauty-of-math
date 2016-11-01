@@ -38,7 +38,7 @@
             android:label="@string/title_activity_blank"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".bezier.details.SampleBezierActivity"
+            android:name=".bezier.impl.SampleBezierActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".test.TestActivity">
 

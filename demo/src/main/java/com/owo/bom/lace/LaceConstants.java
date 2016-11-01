@@ -1,9 +1,9 @@
-package com.owo.bom.bezier;
+package com.owo.bom.lace;
 
 /**
  * Created by wangli on 16-10-24.
  */
-public class BezierConstants {
+public class LaceConstants {
     public static final String KEY_TYPE = "type";
 
     

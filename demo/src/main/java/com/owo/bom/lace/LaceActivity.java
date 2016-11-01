@@ -1,4 +1,4 @@
-package com.owo.bom.bezier;
+package com.owo.bom.lace;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -9,42 +9,27 @@ import android.widget.ListView;
 import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.GroupDataItem;
+import com.owo.bom.bezier.BezierConstants;
+import com.owo.bom.bezier.BezierGroupAdapter;
 import com.owo.bom.bezier.impl.SampleBezierActivity;
 import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BezierActivity extends ListActivity {
-  private static final String TAG = BezierActivity.class.getSimpleName();
+public class LaceActivity extends ListActivity {
+  private static final String TAG = LaceActivity.class.getSimpleName();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_list);
     BezierGroupAdapter adapter = new BezierGroupAdapter();
-    // add basic group
+    // add curve group
     {
       List<DataItem> items = setupBasicListData();
       GroupDataItem group = new GroupDataItem();
-      group.setTitle(getResources().getString(R.string.bezier_basic));
-      group.setItems(items);
-      adapter.addGroup(group);
-    }
-    // add advance group
-    {
-      List<DataItem> items = setupAdvanceListData();
-      GroupDataItem group = new GroupDataItem();
-      group.setTitle(getResources().getString(R.string.bezier_advance));
-      group.setItems(items);
-      adapter.addGroup(group);
-    }
-
-    // add principle group
-    {
-      List<DataItem> items = setupPrincipleListData();
-      GroupDataItem group = new GroupDataItem();
-      group.setTitle(getResources().getString(R.string.bezier_principle));
+      group.setTitle(getResources().getString(R.string.curve_title));
       group.setItems(items);
       adapter.addGroup(group);
     }

@@ -1,6 +1,5 @@
-package com.owo.bom.bezier.details;
+package com.owo.bom.bezier.impl;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;

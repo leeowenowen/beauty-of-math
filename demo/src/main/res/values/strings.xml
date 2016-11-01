@@ -13,7 +13,10 @@
     <string name="bezier_waterflow">Water Flow</string>
     <string name="bezier_drag">Drag</string>
     <string name="bezier_flower">Flower</string>
+    <string name="bezier_principle">Principle</string>
     <string name="petals_num">Petals Num:</string>
     <string name="outter_radius">Outter Radius:</string>
     <string name="inner_radius">Inner Radius</string>
+
+    <string name="curve_title">Curve</string>
 </resources>

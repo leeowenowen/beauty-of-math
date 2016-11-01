@@ -1,4 +1,4 @@
-package com.owo.bom.bezier.details;
+package com.owo.bom.bezier.impl;
 
 import android.content.Context;
 import android.widget.LinearLayout;

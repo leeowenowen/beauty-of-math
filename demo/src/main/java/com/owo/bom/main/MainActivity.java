@@ -2,6 +2,7 @@ package com.owo.bom.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,12 +12,9 @@ import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
-import com.owo.bom.main.covers.BezierCoverView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import owo.bom.fractal.Lace;
 
 
 public class MainActivity extends Activity {
@@ -64,13 +62,14 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(new Lace(this));
+    setContentView(mListView);
   }
 
   private List<DataItem> setupListData() {
     List<DataItem> list = new ArrayList<>();
     {
-      BezierCoverView sbv = new BezierCoverView(this);
+      View sbv = new View(this);
+      sbv.setBackgroundColor(Color.BLACK);
       list.add(new DataItem(getResources().getString(R.string.main_title_bezier), //
                             getResources().getString(R.string.main_desc_bezier),//
                             sbv));
