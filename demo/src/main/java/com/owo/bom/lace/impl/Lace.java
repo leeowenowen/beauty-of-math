@@ -1,4 +1,4 @@
-package owo.bom.fractal;
+package com.owo.bom.lace.impl;
 
 import android.content.Context;
 import android.graphics.Canvas;
