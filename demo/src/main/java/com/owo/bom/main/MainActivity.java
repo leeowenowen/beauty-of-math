@@ -13,7 +13,7 @@ import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
 import com.owo.bom.lace.LaceActivity;
-import com.owo.bom.lace.impl.Spiral2View;
+import com.owo.bom.lace.impl.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(new Spiral2View(this));
+    setContentView(new CircleProgressView(this));
   }
 
   private List<DataItem> setupListData() {
