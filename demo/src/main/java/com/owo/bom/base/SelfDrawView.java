@@ -1,6 +1,7 @@
 package com.owo.bom.base;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
@@ -16,5 +17,6 @@ public class SelfDrawView extends View {
         super(context);
         mPaint.setAntiAlias(false);
         mPaint.setStyle(Paint.Style.STROKE);
+        setBackgroundColor(Color.BLACK);
     }
 }
