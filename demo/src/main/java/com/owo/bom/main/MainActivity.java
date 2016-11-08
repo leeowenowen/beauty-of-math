@@ -12,8 +12,8 @@ import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
+import com.owo.bom.fish_tank.FishTank;
 import com.owo.bom.lace.LaceActivity;
-import com.owo.bom.lace.impl.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(new CircleProgressView(this));
+    setContentView(new FishTank(this));
   }
 
   private List<DataItem> setupListData() {

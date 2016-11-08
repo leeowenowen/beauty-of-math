@@ -34,7 +34,6 @@ public class CircleProgressView extends View {
         angle += 0.1;
         if (angle > Math.PI * 2) {
           angle = 0;
-          return;
         }
         postInvalidate();
 
@@ -53,10 +52,18 @@ public class CircleProgressView extends View {
   }
 
   @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+    R = getWidth() / 3;
+    r1 = R / 10;
+    r2 = R / 8;
+  }
+
+  @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
     Camera camera = new Camera();
-    camera.rotate(20,20,20);
+    camera.rotate(0, 20, 0);
     camera.applyToCanvas(canvas);
     float centerX = getWidth() / 2;
     float centerY = getHeight() / 2;
