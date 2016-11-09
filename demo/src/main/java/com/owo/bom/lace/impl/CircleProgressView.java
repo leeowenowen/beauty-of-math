@@ -15,7 +15,7 @@ import owo.bom.drawer.CircleBezierDrawerInscribe;
 
 public class CircleProgressView extends View {
   CircleBezierDrawerInscribe drawer = new CircleBezierDrawerInscribe();
-  private Paint mPaint = new Paint();
+  private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private double angle = 0;
   int n = 10;
   int R = 400;
@@ -25,7 +25,7 @@ public class CircleProgressView extends View {
 
   public CircleProgressView(Context context) {
     super(context);
-    mPaint.setColor(Color.RED);
+    mPaint.setColor(Color.parseColor("#FF008B"));
     detal = Math.PI * 2 / n;
     postDelayed(new Runnable() {
       @Override

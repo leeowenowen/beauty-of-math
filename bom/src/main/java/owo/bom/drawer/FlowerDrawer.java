@@ -10,8 +10,7 @@ import owo.bom.splash.BaseDrawer;
  * Created by wangli on 16-9-22.
  */
 public class FlowerDrawer extends BaseDrawer {
-  private float xo;
-  private float yo;
+  private PointF center;
   private float R;
   private float r;
   private int n;
@@ -22,10 +21,7 @@ public class FlowerDrawer extends BaseDrawer {
   }
 
   public FlowerDrawer center(PointF center) {
-    if (center != null) {
-      xo = center.x;
-      yo = center.y;
-    }
+    this.center = center;
     return this;
   }
 
@@ -48,6 +44,8 @@ public class FlowerDrawer extends BaseDrawer {
 
   @Override
   public void draw(Canvas canvas) {
+    float xo = center.x;
+    float yo = center.y;
     double sec = Math.PI * 2 / n;
     float xs = xo + R;
     float ys = yo;

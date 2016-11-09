@@ -16,23 +16,26 @@ public class FishTank extends FrameLayout {
   private WaveView mWaveView;
   private WaterGrassGroupDrawerView mLeftGrass;
   private WaterGrassGroupDrawerView mRightGrass;
-  private PerlView mPerl;
+  private SunView mSun;
   private CircleProgressView mCircle;
+  private DandelionView mDandelion;
 
   public FishTank(Context context) {
     super(context);
     mWaveView = new WaveView(context);
     mLeftGrass = new WaterGrassGroupDrawerView(context, 3);
     mRightGrass = new WaterGrassGroupDrawerView(context, 5);
-    mPerl = new PerlView(context);
+    mSun = new SunView(context);
     mCircle = new CircleProgressView(context);
-    mCircle.setRotationY(50);
+    mCircle.setRotationX(70);
+    mDandelion = new DandelionView(context);
 
     addView(mWaveView);
     addView(mLeftGrass);
     addView(mRightGrass);
-    addView(mPerl);
+    addView(mSun);
     addView(mCircle);
+    addView(mDandelion);
     setBackgroundColor(Color.BLUE);
   }
 
@@ -52,13 +55,13 @@ public class FishTank extends FrameLayout {
     {
       FrameLayout.LayoutParams lp =
         new FrameLayout.LayoutParams(getWidth() / 2, getWidth() / 2, Gravity.RIGHT | Gravity.TOP);
-      mPerl.setLayoutParams(lp);
+      mSun.setLayoutParams(lp);
     }
 
     {
       FrameLayout.LayoutParams lp =
-        new FrameLayout.LayoutParams(getWidth() / 2, getWidth() / 2, Gravity.BOTTOM);
-      lp.bottomMargin = getWidth() / 4;
+        new FrameLayout.LayoutParams(getWidth() / 3, getWidth() / 3, Gravity.BOTTOM | Gravity.LEFT);
+      lp.leftMargin = getWidth() / 4;
       mCircle.setLayoutParams(lp);
     }
   }

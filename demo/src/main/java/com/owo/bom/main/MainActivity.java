@@ -12,7 +12,7 @@ import com.owo.bom.R;
 import com.owo.bom.base.DataItem;
 import com.owo.bom.base.ListDataAdapter;
 import com.owo.bom.bezier.BezierActivity;
-import com.owo.bom.fish_tank.Book;
+import com.owo.bom.fish_tank.FishTank;
 import com.owo.bom.lace.LaceActivity;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
     //    setContentView(view);
 
     //  setContentView(new BezierView(this));
-    setContentView(new Book(this));
+    setContentView(new FishTank(this));
     //  setContentView(mListView);
   }
 
