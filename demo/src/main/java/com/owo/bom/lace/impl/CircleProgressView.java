@@ -1,7 +1,6 @@
 package com.owo.bom.lace.impl;
 
 import android.content.Context;
-import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -62,9 +61,6 @@ public class CircleProgressView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    Camera camera = new Camera();
-    camera.rotate(0, 20, 0);
-    camera.applyToCanvas(canvas);
     float centerX = getWidth() / 2;
     float centerY = getHeight() / 2;
     Log.d("xxx", "onDraw---------------------------");

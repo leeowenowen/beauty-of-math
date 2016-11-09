@@ -45,12 +45,11 @@ public class TestCamera extends View {
     canvas.drawCircle(getWidth() / 2, getHeight() / 2, 200, mPaint);
     mPaint.setColor(Color.RED);
     mCamera.save();
-    mCamera.rotate(mRotateX, mRotateY, mRotateZ);
-    mCamera.translate(mTX, mTY, mTZ);
-    //    mCamera.getMatrix(mMatrix);
-    //    mMatrix.preTranslate(-getWidth() / 2, -getHeight() / 2);
-    //    mMatrix.postTranslate(getWidth() / 2, getHeight() / 2);
-    mCamera.applyToCanvas(canvas);
+    mCamera.rotateY(70);
+    mCamera.getMatrix(mMatrix);
+    mMatrix.preTranslate(-getWidth() / 2, -getHeight() / 2);
+    mMatrix.postTranslate(getWidth() / 2, getHeight() / 2);
+    canvas.concat(mMatrix);
     canvas.drawCircle(getWidth() / 2, getHeight() / 2, 200, mPaint);
     mCamera.restore();
 

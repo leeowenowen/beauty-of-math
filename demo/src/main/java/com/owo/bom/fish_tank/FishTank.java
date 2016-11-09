@@ -1,6 +1,7 @@
 package com.owo.bom.fish_tank;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 
@@ -25,12 +26,14 @@ public class FishTank extends FrameLayout {
     mRightGrass = new WaterGrassGroupDrawerView(context, 5);
     mPerl = new PerlView(context);
     mCircle = new CircleProgressView(context);
+    mCircle.setRotationY(50);
 
     addView(mWaveView);
     addView(mLeftGrass);
     addView(mRightGrass);
     addView(mPerl);
     addView(mCircle);
+    setBackgroundColor(Color.BLUE);
   }
 
   private void setupLayout() {
@@ -47,11 +50,8 @@ public class FishTank extends FrameLayout {
       mRightGrass.setLayoutParams(lp);
     }
     {
-      FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(getWidth() / 2,
-                                                                 getWidth() / 2,
-                                                                 Gravity.RIGHT | Gravity.BOTTOM);
-//      lp.rightMargin = -getWidth() / 4;
-//      lp.bottomMargin = -getWidth() / 4;
+      FrameLayout.LayoutParams lp =
+        new FrameLayout.LayoutParams(getWidth() / 2, getWidth() / 2, Gravity.RIGHT | Gravity.TOP);
       mPerl.setLayoutParams(lp);
     }
 

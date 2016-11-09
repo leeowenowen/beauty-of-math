@@ -2,6 +2,7 @@ package com.owo.bom.fish_tank;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class WaterGrassGroupDrawerView extends FrameLayout {
 
   public WaterGrassGroupDrawerView(Context context) {
     this(context, 5);
+    setBackgroundColor(Color.BLUE);
   }
 
   public WaterGrassGroupDrawerView(Context context, int n) {

@@ -108,6 +108,7 @@ public class WaterGrassDrawer implements Drawer {
       computePoints();
       reverse(mPoints2);
     }
+    mPaint.setColor(Color.parseColor("#EE1289"));
     for (int i = 0; i < mPoints.length; i++) {
       canvas.drawCircle(mPoints[i].x, mPoints[i].y, 5, mPaint);
     }
@@ -115,7 +116,7 @@ public class WaterGrassDrawer implements Drawer {
     for (int i = 0; i < mPoints2.length; i++) {
       canvas.drawCircle(mPoints2[i].x, mPoints2[i].y, 5, mPaint);
     }
-
+    mPaint.setColor(Color.GREEN);
     mPath.reset();
     mPath.moveTo((float) mPoints[0].x, (float) mPoints[0].y);
     addBezierToPath(mPoints, mPath);

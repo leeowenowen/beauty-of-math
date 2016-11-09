@@ -22,6 +22,7 @@ public class PerlView extends SelfDrawView {
 
   public PerlView(Context context) {
     super(context);
+    setBackgroundColor(Color.TRANSPARENT);
   }
 
   @Override
@@ -30,10 +31,11 @@ public class PerlView extends SelfDrawView {
     if (mDrawer == null || w == 0 || h == 0) {
       return;
     }
-    mDrawer.center(new PointF(getWidth(), getHeight())).setN(10);
+    mDrawer.center(new PointF(getWidth() / 2, getHeight() / 2)).setN(10);
     PropertyValuesHolder rHolder =
-      PropertyValuesHolder.ofFloat("rIn", 0, (getWidth() / 2) - 10);
-    PropertyValuesHolder RHolder = PropertyValuesHolder.ofFloat("rOut", 0, getWidth() / 2);
+      PropertyValuesHolder.ofFloat("rIn", getWidth() / 4, getWidth() / 2);
+    PropertyValuesHolder RHolder =
+      PropertyValuesHolder.ofFloat("rOut", getWidth() / 4 - 100, getWidth() / 2);
     ObjectAnimator oa = ObjectAnimator.ofPropertyValuesHolder(mDrawer, rHolder, RHolder);
     oa.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
       @Override
@@ -41,7 +43,7 @@ public class PerlView extends SelfDrawView {
         postInvalidate();
       }
     });
-    oa.setDuration(4000);
+    oa.setDuration(2000);
     oa.setRepeatCount(ValueAnimator.INFINITE);
     oa.start();
   }
@@ -51,6 +53,7 @@ public class PerlView extends SelfDrawView {
     mDrawer.mPaint.setColor(Color.YELLOW);
     mDrawer.mPaint.setStyle(Paint.Style.FILL);
     mDrawer.draw(canvas);
+    canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 4, mDrawer.mPaint);
   }
 
 }
