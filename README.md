@@ -3,7 +3,7 @@
 demenstrate the beauty of math.
 
 #Bezier曲线
-![bezier.gif](https://github.com/leeowenowen/beauty-of-math/tree/master/res/bezier.gif)
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier.gif)
 
 #函数
 **定义:**一般的，在一个变化过程中，假设有两个变量x、y，如果对于任意一个x都有唯一确定的一个y和它对应，那么就称y是x的函数，其中x是自变量，y是因变量，x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域. 
