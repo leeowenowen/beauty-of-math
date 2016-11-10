@@ -38,9 +38,8 @@ public class FishTank extends FrameLayout {
     mDandelion = new DandelionView(context);
     mEntryView = new TextView(context);
     mEntryView.setGravity(Gravity.CENTER);
-    UIUtil.setBackgroundDrawable(mEntryView, new ShapeDrawable(new RoundShape()));
+    UIUtil.setBackgroundDrawable(mEntryView, new ShapeDrawable(new RoundShape(Color.GREEN)));
     mEntryView.setText("Tutorial");
-    mEntryView.setBackgroundColor(Color.GREEN);
     mEntryView.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
