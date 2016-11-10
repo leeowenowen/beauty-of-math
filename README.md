@@ -3,7 +3,35 @@
 demenstrate the beauty of math.
 
 #Bezier曲线
+##水族箱展示：
+
 ![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier.gif)
+
+##二阶贝塞尔曲线展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_2.gif)
+
+##三阶贝塞尔曲线展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_3.gif)
+
+##拖拽展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_drag.gif)
+
+
+##花朵展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_flower.gif)
+
+
+##水流展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_water.gif)
+
+##积分原理展示：
+
+![bezier.gif](https://github.com/leeowenowen/beauty-of-math/blob/master/res/bezier_principle.gif)
 
 #函数
 **定义:**一般的，在一个变化过程中，假设有两个变量x、y，如果对于任意一个x都有唯一确定的一个y和它对应，那么就称y是x的函数，其中x是自变量，y是因变量，x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域. 
